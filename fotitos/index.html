@@ -13,6 +13,8 @@
         --ink: #3f3440;
         --tile-bg: #f6eef4;
         --tile-border: #e5d8e1;
+        --paper: #ffffff;
+        --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
       }
 
       * {
@@ -22,19 +24,109 @@
       body {
         margin: 0;
         min-height: 100vh;
-        background: var(--bg);
+        background: linear-gradient(180deg, var(--bg), #fff6fa);
         font-family: Georgia, "Times New Roman", serif;
         color: var(--ink);
         padding: 40px 20px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body.night {
+        background: linear-gradient(180deg, #f3d6ea, #fff7fb);
+      }
+
+      .decor {
+        position: fixed;
+        width: 120px;
+        height: 120px;
+        opacity: 0.14;
+        pointer-events: none;
+        background-repeat: no-repeat;
+        background-size: contain;
+        filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.05));
+      }
+
+      .decor.tl {
+        top: 10px;
+        left: 10px;
+        transform: rotate(-8deg);
+      }
+
+      .decor.tr {
+        top: 10px;
+        right: 10px;
+        transform: rotate(10deg);
+      }
+
+      .decor.bl {
+        bottom: 10px;
+        left: 10px;
+        transform: rotate(8deg);
+      }
+
+      .decor.br {
+        bottom: 10px;
+        right: 10px;
+        transform: rotate(-10deg);
+      }
+
+      .decor.heart {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M60 102s-31-19.7-45.8-38.4C2.8 47.9 8.1 27.9 25.6 22.6c10.4-3.1 20.9 1.2 27.3 9.1 6.4-7.9 17-12.2 27.3-9.1 17.5 5.3 22.8 25.3 11.4 41C91 82.3 60 102 60 102z' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linejoin='round'/%3E%3C/svg%3E");
+      }
+
+      .decor.cat {
+        background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M38 44l-8-14 14 8c5-3 11-5 16-5s11 2 16 5l14-8-8 14c4 5 6 11 6 18 0 18-12 32-28 32S32 80 32 62c0-7 2-13 6-18z' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linejoin='round'/%3E%3Cpath d='M48 62c2 3 5 4 8 4m8-4c2 3 5 4 8 4' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linecap='round'/%3E%3Cpath d='M58 74c1.5 1.2 2.8 1.8 4 1.8s2.5-.6 4-1.8' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E\");
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .decor {
+          animation: floaty 7s ease-in-out infinite;
+        }
+
+        .decor.tr,
+        .decor.bl {
+          animation-duration: 8.5s;
+        }
+      }
+
+      @keyframes floaty {
+        0% {
+          transform: translateY(0) scale(1) rotate(var(--r, 0deg));
+        }
+        50% {
+          transform: translateY(-3px) scale(1.02) rotate(var(--r, 0deg));
+        }
+        100% {
+          transform: translateY(0) scale(1) rotate(var(--r, 0deg));
+        }
       }
 
       .wrap {
         max-width: 720px;
         margin: 0 auto;
         background: var(--card);
-        border: 1px solid var(--border);
-        padding: 28px 30px;
-        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+        border: 1px solid rgba(216, 207, 214, 0.65);
+        padding: 30px 32px;
+        box-shadow:
+          0 10px 30px rgba(0, 0, 0, 0.04),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+        position: relative;
+      }
+
+      .wrap::before {
+        content: "";
+        position: absolute;
+        top: -14px;
+        right: 18px;
+        width: 52px;
+        height: 52px;
+        opacity: 0.22;
+        background-repeat: no-repeat;
+        background-size: contain;
+        transform: rotate(6deg);
+        filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.05));
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M60 102s-31-19.7-45.8-38.4C2.8 47.9 8.1 27.9 25.6 22.6c10.4-3.1 20.9 1.2 27.3 9.1 6.4-7.9 17-12.2 27.3-9.1 17.5 5.3 22.8 25.3 11.4 41C91 82.3 60 102 60 102z' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linejoin='round'/%3E%3C/svg%3E");
       }
 
       .top {
@@ -46,12 +138,15 @@
       }
 
       .back {
-        font-size: 13px;
+        font-family: var(--sans);
+        font-size: 12.5px;
+        letter-spacing: 0.2px;
         color: var(--muted);
         text-decoration: none;
         border-bottom: 1px solid rgba(123, 109, 121, 0.35);
         padding-bottom: 1px;
         white-space: nowrap;
+        transition: color 140ms ease, border-color 140ms ease;
       }
 
       .back:hover {
@@ -67,7 +162,9 @@
 
       .sub {
         color: var(--muted);
-        font-size: 15px;
+        font-family: var(--sans);
+        font-size: 13.5px;
+        letter-spacing: 0.15px;
         line-height: 1.7;
         margin: 0 0 18px 0;
       }
@@ -87,37 +184,55 @@
 
       .tile {
         display: block;
-        padding: 14px 16px;
-        background: var(--tile-bg);
-        border: 1px solid var(--tile-border);
+        padding: 14px 14px 18px 14px;
+        background: var(--paper);
+        border: 1px solid rgba(216, 207, 214, 0.7);
         text-decoration: none;
         color: var(--ink);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+        transform: rotate(-0.2deg);
+        transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+        border-radius: 10px;
       }
 
       .tile:hover {
-        border-color: rgba(63, 52, 64, 0.25);
+        border-color: rgba(63, 52, 64, 0.22);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.07);
+        transform: rotate(0deg) translateY(-1px);
+      }
+
+      .tile::after {
+        content: "";
+        display: block;
+        height: 18px;
       }
 
       .tile-title {
         font-size: 18px;
         line-height: 1.4;
         margin: 0 0 4px 0;
+        font-family: var(--sans);
+        letter-spacing: 0.1px;
       }
 
       .tile-meta {
-        font-size: 13px;
+        font-family: var(--sans);
+        font-size: 12.5px;
         color: var(--muted);
         line-height: 1.6;
         margin: 0;
+        letter-spacing: 0.2px;
       }
 
       footer {
         margin-top: 26px;
         padding-top: 16px;
-        border-top: 1px solid #ddd2da;
-        font-size: 15px;
+        border-top: 1px solid rgba(221, 210, 218, 0.8);
+        font-family: var(--sans);
+        font-size: 13.5px;
         line-height: 1.8;
         color: var(--muted);
+        letter-spacing: 0.15px;
       }
 
       .egg {
@@ -131,9 +246,35 @@
       .egg.show {
         display: block;
       }
+
+      .constellation {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .constellation .star {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: rgba(123, 109, 121, 0.75);
+        box-shadow: 0 0 0 3px rgba(123, 109, 121, 0.08), 0 10px 18px rgba(0, 0, 0, 0.06);
+      }
+
+      .constellation .line {
+        position: absolute;
+        height: 2px;
+        background: rgba(123, 109, 121, 0.35);
+        transform-origin: left center;
+      }
     </style>
   </head>
   <body>
+    <div class="decor tl heart" aria-hidden="true" style="--r:-8deg"></div>
+    <div class="decor tr cat" aria-hidden="true" style="--r:10deg"></div>
+    <div class="decor bl cat" aria-hidden="true" style="--r:8deg"></div>
+    <div class="decor br heart" aria-hidden="true" style="--r:-10deg"></div>
     <main class="wrap">
       <div class="top">
         <h1>fotitos</h1>
@@ -183,6 +324,94 @@
         if (footer && egg2) {
           footer.addEventListener("dblclick", () => egg2.classList.toggle("show"));
         }
+
+        // Modo noche suave (hora Chicago)
+        try {
+          const hourStr = new Intl.DateTimeFormat("en-US", {
+            timeZone: "America/Chicago",
+            hour: "2-digit",
+            hour12: false,
+          }).format(new Date());
+          const hour = Number(hourStr);
+          if (Number.isFinite(hour) && hour >= 22) document.body.classList.add("night");
+        } catch {}
+
+        // Easter egg: constelación (triple clic cerca de una esquina)
+        let cornerClicks = [];
+        const inCorner = (x, y) => {
+          const m = 72;
+          const w = window.innerWidth;
+          const h = window.innerHeight;
+          const nearLeft = x < m;
+          const nearRight = x > w - m;
+          const nearTop = y < m;
+          const nearBottom = y > h - m;
+          return (nearLeft && nearTop) || (nearRight && nearTop) || (nearLeft && nearBottom) || (nearRight && nearBottom);
+        };
+
+        const showConstellation = (x, y) => {
+          const host = document.createElement("div");
+          host.className = "constellation";
+          const s1 = document.createElement("div");
+          const s2 = document.createElement("div");
+          const s3 = document.createElement("div");
+          const l1 = document.createElement("div");
+          const l2 = document.createElement("div");
+          s1.className = "star";
+          s2.className = "star";
+          s3.className = "star";
+          l1.className = "line";
+          l2.className = "line";
+
+          const pts = [
+            [x, y],
+            [x + 22, y + 14],
+            [x + 8, y + 34],
+          ];
+
+          const place = (el, px, py) => {
+            el.style.left = `${px}px`;
+            el.style.top = `${py}px`;
+          };
+          place(s1, pts[0][0], pts[0][1]);
+          place(s2, pts[1][0], pts[1][1]);
+          place(s3, pts[2][0], pts[2][1]);
+
+          const line = (el, a, b) => {
+            const dx = b[0] - a[0];
+            const dy = b[1] - a[1];
+            const len = Math.hypot(dx, dy);
+            el.style.left = `${a[0] + 3}px`;
+            el.style.top = `${a[1] + 3}px`;
+            el.style.width = `${len}px`;
+            el.style.transform = `rotate(${Math.atan2(dy, dx)}rad)`;
+          };
+          line(l1, pts[0], pts[1]);
+          line(l2, pts[1], pts[2]);
+
+          host.appendChild(l1);
+          host.appendChild(l2);
+          host.appendChild(s1);
+          host.appendChild(s2);
+          host.appendChild(s3);
+          document.body.appendChild(host);
+
+          host.animate([{ opacity: 0 }, { opacity: 1 }, { opacity: 0 }], { duration: 1800, easing: "ease-in-out" });
+          window.setTimeout(() => host.remove(), 1850);
+        };
+
+        window.addEventListener("click", (e) => {
+          const x = e.clientX;
+          const y = e.clientY;
+          if (!inCorner(x, y)) return;
+          const now = Date.now();
+          cornerClicks = cornerClicks.filter((t) => now - t < 700);
+          cornerClicks.push(now);
+          if (cornerClicks.length >= 3) {
+            cornerClicks = [];
+            showConstellation(x - 24, y - 24);
+          }
+        });
       })();
     </script>
   </body>
