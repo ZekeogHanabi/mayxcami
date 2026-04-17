@@ -93,13 +93,13 @@
         }
       }
 
-      .ph {
-        border: 1px dashed rgba(123, 109, 121, 0.6);
+      .photo {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        border: 1px solid rgba(123, 109, 121, 0.35);
         background: rgba(255, 255, 255, 0.6);
-        padding: 18px;
-        color: var(--muted);
-        font-size: 14px;
-        line-height: 1.6;
       }
     </style>
   </head>
@@ -118,8 +118,10 @@
       </div>
 
       <section class="photos" aria-label="fotos de Italia">
-        <div class="ph">foto 1 (placeholder)</div>
-        <div class="ph">foto 2 (placeholder)</div>
+        <img class="photo" src="https://i.ibb.co/cK6kW8NX/20260305-161505-2.jpg" alt="Italia — foto 1" loading="lazy" />
+        <img class="photo" src="https://i.ibb.co/pjZRJHf6/20260306-140545.jpg" alt="Italia — foto 2" loading="lazy" />
+        <img class="photo" src="https://i.ibb.co/PzmTLHWX/20260307-153715.jpg" alt="Italia — foto 3" loading="lazy" />
+        <img class="photo" src="https://i.ibb.co/TxgWJy74/20260305-151839-2.jpg" alt="Italia — foto 4" loading="lazy" />
       </section>
     </main>
   </body>

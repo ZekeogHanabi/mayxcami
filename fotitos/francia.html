@@ -93,13 +93,13 @@
         }
       }
 
-      .ph {
-        border: 1px dashed rgba(123, 109, 121, 0.6);
+      .photo {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        border: 1px solid rgba(123, 109, 121, 0.35);
         background: rgba(255, 255, 255, 0.6);
-        padding: 18px;
-        color: var(--muted);
-        font-size: 14px;
-        line-height: 1.6;
       }
     </style>
   </head>
@@ -118,8 +118,10 @@
       </div>
 
       <section class="photos" aria-label="fotos de Francia">
-        <div class="ph">foto 1 (placeholder)</div>
-        <div class="ph">foto 2 (placeholder)</div>
+        <img class="photo" src="https://i.ibb.co/XZ8WTCw1/20260302-135137.jpg" alt="Francia — foto 1" loading="lazy" />
+        <img class="photo" src="https://i.ibb.co/mC0cTLTs/20260304-174305.jpg" alt="Francia — foto 2" loading="lazy" />
+        <img class="photo" src="https://i.ibb.co/ZR7qXtdt/20260304-173558-2.jpg" alt="Francia — foto 3" loading="lazy" />
+        <img class="photo" src="https://i.ibb.co/KpzVr31x/20260302-193709-2.jpg" alt="Francia — foto 4" loading="lazy" />
       </section>
     </main>
   </body>

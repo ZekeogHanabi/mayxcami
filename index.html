@@ -193,7 +193,7 @@
         <div class="egg" id="egg-1">mini secreto:  te quiero mucho, mi amor c:</div>
       </div>
 
-      <h1>para <span class="muted">May</span></h1>
+      <h1>para <span class="muted" id="may-name" title="(psst)">May</span></h1>
 
       <section class="content">
         <p>hola</p>
@@ -267,6 +267,7 @@ no sé muy bien explicarlo mejor que eso, te quiero mucho mi amor c:
         <p>esto es tuyo.</p>
         <p>— <span class="muted">Cami</span></p>
         <a class="tiny-link" href="./fotitos/index.html">fotitos →</a>
+        <a class="tiny-link" href="#" id="no-press">[ no presionar ]</a>
       </footer>
     </main>
     <div class="modal" id="late-modal" role="dialog" aria-modal="true" aria-label="mensaje nocturno">
@@ -280,6 +281,26 @@ pero me gusta que estés aquí :D
         </p>
         <div class="modal-actions">
           <button class="modal-close" type="button" id="late-modal-close">ok</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="may-modal" role="dialog" aria-modal="true" aria-label="easter egg May">
+      <div class="modal-card">
+        <p class="modal-text">esto no era un botón, es tu nombre y un easter egg :p</p>
+        <div class="modal-actions">
+          <button class="modal-close" type="button" id="may-modal-close">ok</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="no-press-modal" role="dialog" aria-modal="true" aria-label="no presionar">
+      <div class="modal-card">
+        <p class="modal-text">
+ok
+
+yo también lo habría hecho jahsjdhsjd
+        </p>
+        <div class="modal-actions">
+          <button class="modal-close" type="button" id="no-press-modal-close">ok</button>
         </div>
       </div>
     </div>
@@ -330,6 +351,35 @@ pero me gusta que estés aquí :D
           }
         } catch {
           
+        }
+
+        // Easter egg: click en "May" abre un popup
+        const mayName = document.getElementById("may-name");
+        const mayModal = document.getElementById("may-modal");
+        const mayModalClose = document.getElementById("may-modal-close");
+
+        const closeMayModal = () => mayModal?.classList.remove("show");
+        if (mayModalClose) mayModalClose.addEventListener("click", closeMayModal);
+        if (mayModal) mayModal.addEventListener("click", (e) => e.target === mayModal && closeMayModal());
+        window.addEventListener("keydown", (e) => e.key === "Escape" && closeMayModal());
+
+        if (mayName) mayName.addEventListener("click", () => mayModal?.classList.add("show"));
+
+        // Easter egg: [ no presionar ]
+        const noPress = document.getElementById("no-press");
+        const noPressModal = document.getElementById("no-press-modal");
+        const noPressModalClose = document.getElementById("no-press-modal-close");
+
+        const closeNoPressModal = () => noPressModal?.classList.remove("show");
+        if (noPressModalClose) noPressModalClose.addEventListener("click", closeNoPressModal);
+        if (noPressModal) noPressModal.addEventListener("click", (e) => e.target === noPressModal && closeNoPressModal());
+        window.addEventListener("keydown", (e) => e.key === "Escape" && closeNoPressModal());
+
+        if (noPress) {
+          noPress.addEventListener("click", (e) => {
+            e.preventDefault();
+            noPressModal?.classList.add("show");
+          });
         }
       })();
     </script>
