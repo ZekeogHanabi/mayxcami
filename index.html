@@ -100,6 +100,7 @@
         margin-top: 8px;
         line-height: 1.8;
         font-size: 16px;
+        white-space: pre-line;
       }
 
       ul {
@@ -129,6 +130,58 @@
 
       .egg.show {
         display: block;
+      }
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: rgba(63, 52, 64, 0.28);
+      }
+
+      .modal.show {
+        display: flex;
+      }
+
+      .modal-card {
+        width: min(520px, 100%);
+        background: var(--card);
+        border: 1px solid var(--border);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        padding: 18px 18px 14px 18px;
+      }
+
+      .modal-text {
+        font-size: 16px;
+        line-height: 1.85;
+        white-space: pre-line;
+        margin: 0;
+      }
+
+      .modal-actions {
+        margin-top: 10px;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .modal-close {
+        appearance: none;
+        border: 0;
+        background: transparent;
+        color: var(--muted);
+        font-family: inherit;
+        font-size: 13px;
+        padding: 6px 8px;
+        cursor: pointer;
+        border-bottom: 1px solid rgba(123, 109, 121, 0.35);
+      }
+
+      .modal-close:hover {
+        color: var(--ink);
+        border-bottom-color: rgba(63, 52, 64, 0.55);
       }
     </style>
   </head>
@@ -162,17 +215,41 @@
 
         <details>
           <summary>[ abre esto si me extrañas ]</summary>
-          <div class="note-body">[escribe tu nota aquí]</div>
+          <div class="note-body">
+            yo también te extraño mucho...
+
+más de lo que digo normalmente
+
+a veces me dan ganas de contarte cualquier cosa, a veces complicadas aunque no entiendas
+solo me gusta saber que estas ahí para escucharme
+          </div>
         </details>
 
         <details>
           <summary>[ abre esto si hoy se siente pesado ]</summary>
-          <div class="note-body">[escribe tu nota aquí]</div>
+          <div class="note-body">
+            no tienes que arreglar todo hoy
+
+de verdad
+
+a veces con pasar el día ya es suficiente
+
+tómate tu tiempo
+hazlo más lento
+aunque no esté cerca tuyo, siempre puedes contar conmigo uwu
+          </div>
         </details>
 
         <details>
           <summary>[ abre esto si quieres algo dulce ]</summary>
-          <div class="note-body">[escribe tu nota aquí]</div>
+          <div class="note-body">
+            “te quiero sin saber cómo, ni cuándo, ni de dónde,
+            te quiero directamente sin problemas ni orgullo…”
+
+— neruda
+
+no sé muy bien explicarlo mejor que eso, te quiero mucho mi amor c:
+          </div>
         </details>
       </section>
 
@@ -192,6 +269,20 @@
         <a class="tiny-link" href="./fotitos/index.html">fotitos →</a>
       </footer>
     </main>
+    <div class="modal" id="late-modal" role="dialog" aria-modal="true" aria-label="mensaje nocturno">
+      <div class="modal-card">
+        <p class="modal-text">
+es tarde
+
+deberías estar durmiendo
+
+pero me gusta que estés aquí :D
+        </p>
+        <div class="modal-actions">
+          <button class="modal-close" type="button" id="late-modal-close">ok</button>
+        </div>
+      </div>
+    </div>
     <script>
       (() => {
         const lastUpdated = document.getElementById("last-updated");
@@ -209,6 +300,37 @@
           buf = (buf + k).slice(-target.length);
           if (buf === target && egg1) egg1.classList.add("show");
         });
+
+        // Popup nocturno 
+        const modal = document.getElementById("late-modal");
+        const modalClose = document.getElementById("late-modal-close");
+
+        const closeModal = () => {
+          if (!modal) return;
+          modal.classList.remove("show");
+          try {
+            sessionStorage.setItem("lateModalDismissed", "1");
+          } catch {}
+        };
+
+        if (modalClose) modalClose.addEventListener("click", closeModal);
+        if (modal) modal.addEventListener("click", (e) => e.target === modal && closeModal());
+        window.addEventListener("keydown", (e) => e.key === "Escape" && closeModal());
+
+        try {
+          const dismissed = sessionStorage.getItem("lateModalDismissed") === "1";
+          if (!dismissed) {
+            const hourStr = new Intl.DateTimeFormat("en-US", {
+              timeZone: "America/Chicago",
+              hour: "2-digit",
+              hour12: false,
+            }).format(new Date());
+            const hour = Number(hourStr);
+            if (Number.isFinite(hour) && hour >= 22) modal?.classList.add("show");
+          }
+        } catch {
+          
+        }
       })();
     </script>
   </body>
