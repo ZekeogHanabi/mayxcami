@@ -4,7 +4,3 @@ Thumbs.db
 .vscode/
 *.swp
 *.swo
-
-# Si luego añades assets de fotos sin querer commitearlos:
-# fotitos/fotos/
-
