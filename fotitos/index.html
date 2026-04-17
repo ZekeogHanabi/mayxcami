@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fotitos</title>
+    <style>
+      :root {
+        --bg: #fbd7e6;
+        --card: #fffdfd;
+        --border: #d8cfd6;
+        --muted: #7b6d79;
+        --ink: #3f3440;
+        --tile-bg: #f6eef4;
+        --tile-border: #e5d8e1;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        font-family: Georgia, "Times New Roman", serif;
+        color: var(--ink);
+        padding: 40px 20px;
+      }
+
+      .wrap {
+        max-width: 720px;
+        margin: 0 auto;
+        background: var(--card);
+        border: 1px solid var(--border);
+        padding: 28px 30px;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+      }
+
+      .top {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+
+      .back {
+        font-size: 13px;
+        color: var(--muted);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(123, 109, 121, 0.35);
+        padding-bottom: 1px;
+        white-space: nowrap;
+      }
+
+      .back:hover {
+        color: var(--ink);
+        border-bottom-color: rgba(63, 52, 64, 0.55);
+      }
+
+      h1 {
+        font-size: 30px;
+        font-weight: 400;
+        margin: 0 0 14px 0;
+      }
+
+      .sub {
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.7;
+        margin: 0 0 18px 0;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      @media (max-width: 520px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .tile {
+        display: block;
+        padding: 14px 16px;
+        background: var(--tile-bg);
+        border: 1px solid var(--tile-border);
+        text-decoration: none;
+        color: var(--ink);
+      }
+
+      .tile:hover {
+        border-color: rgba(63, 52, 64, 0.25);
+      }
+
+      .tile-title {
+        font-size: 18px;
+        line-height: 1.4;
+        margin: 0 0 4px 0;
+      }
+
+      .tile-meta {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      footer {
+        margin-top: 26px;
+        padding-top: 16px;
+        border-top: 1px solid #ddd2da;
+        font-size: 15px;
+        line-height: 1.8;
+        color: var(--muted);
+      }
+
+      .egg {
+        display: none;
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .egg.show {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <div class="top">
+        <h1>fotitos</h1>
+        <a class="back" href="../index.html">← volver</a>
+      </div>
+
+      <p class="sub" id="sub">
+        aqui estaran nuestros viajes.
+        <br />
+        <span id="beginning">esto solo es el inicio c:</span>
+      </p>
+
+      <section class="grid" aria-label="lugares">
+        <a class="tile" href="./francia.html">
+          <p class="tile-title">Francia</p>
+          <p class="tile-meta">Paris, 2026</p>
+        </a>
+
+        <a class="tile" href="./italia.html">
+          <p class="tile-title">Italia</p>
+          <p class="tile-meta">Roma, 2026</p>
+        </a>
+      </section>
+
+      <footer id="footer">
+        espero que te guste !
+        <div class="egg" id="egg-2">si haces clic en “fotitos” arriba… pasa algo chiquito.</div>
+      </footer>
+    </main>
+    <script>
+      (() => {
+        const title = document.querySelector("h1");
+        const beginning = document.getElementById("beginning");
+        const footer = document.getElementById("footer");
+        const egg2 = document.getElementById("egg-2");
+
+        // Easter egg 1: clic en el título alterna la frase.
+        if (title && beginning) {
+          let flip = false;
+          title.addEventListener("click", () => {
+            flip = !flip;
+            beginning.textContent = flip ? "esto solo es el comienzo." : "esto solo es el inicio c:";
+          });
+        }
+
+        // Easter egg 2: doble clic en el footer revela una notita.
+        if (footer && egg2) {
+          footer.addEventListener("dblclick", () => egg2.classList.toggle("show"));
+        }
+      })();
+    </script>
+  </body>
+</html>

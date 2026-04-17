@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>May X Cami</title>
+    <style>
+      :root {
+        --bg: #fbd7e6;
+        --card: #fffdfd;
+        --border: #d8cfd6;
+        --muted: #7b6d79;
+        --ink: #3f3440;
+        --note-bg: #f6eef4;
+        --note-border: #e5d8e1;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        font-family: Georgia, "Times New Roman", serif;
+        color: var(--ink);
+        padding: 40px 20px;
+      }
+
+      .wrap {
+        max-width: 720px;
+        margin: 0 auto;
+        background: var(--card);
+        border: 1px solid var(--border);
+        padding: 28px 30px;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+      }
+
+      .meta {
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 18px;
+      }
+
+      .tiny-link {
+        display: inline-block;
+        margin-top: 10px;
+        color: var(--muted);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(123, 109, 121, 0.35);
+        padding-bottom: 1px;
+      }
+
+      .tiny-link:hover {
+        color: var(--ink);
+        border-bottom-color: rgba(63, 52, 64, 0.55);
+      }
+
+      h1 {
+        font-size: 30px;
+        font-weight: 400;
+        margin: 0 0 24px 0;
+      }
+
+      .content {
+        line-height: 1.9;
+        font-size: 17px;
+      }
+
+      .notes {
+        margin: 28px 0;
+        padding: 18px 20px;
+        background: var(--note-bg);
+        border: 1px solid var(--note-border);
+      }
+
+      .notes-title {
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      details {
+        border-radius: 6px;
+        padding: 8px 10px;
+      }
+
+      details + details {
+        margin-top: 8px;
+      }
+
+      summary {
+        cursor: pointer;
+        user-select: none;
+        line-height: 1.6;
+        font-size: 16px;
+      }
+
+      .note-body {
+        margin-top: 8px;
+        line-height: 1.8;
+        font-size: 16px;
+      }
+
+      ul {
+        padding-left: 22px;
+        margin-top: 10px;
+      }
+
+      footer {
+        margin-top: 34px;
+        padding-top: 18px;
+        border-top: 1px solid #ddd2da;
+        font-size: 15px;
+        line-height: 1.8;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .egg {
+        display: none;
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .egg.show {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <div class="meta">
+        página personal / última actualización:
+        <span class="muted" id="last-updated" title="pista: tócame">17 de abril de 2026</span>
+        <div class="egg" id="egg-1">ok, mini secreto: esto se escribió pensando en ti.</div>
+      </div>
+
+      <h1>para <span class="muted">May</span></h1>
+
+      <section class="content">
+        <p>hola</p>
+
+        <p>
+          quería hacerte algo pequeño, algo que pudieras abrir cualquier día,
+          cuando quisieras..
+        </p>
+
+        <p>
+          no exactamente un regalo, solo... un rinconcito con nuestros nombres.
+        </p>
+
+        <p>quizás sea simple. tal vez por eso me gusta.</p>
+      </section>
+
+      <section class="notes" aria-label="little notes">
+        <div class="notes-title">notitas</div>
+
+        <details>
+          <summary>[ abre esto si me extrañas ]</summary>
+          <div class="note-body">[escribe tu nota aquí]</div>
+        </details>
+
+        <details>
+          <summary>[ abre esto si hoy se siente pesado ]</summary>
+          <div class="note-body">[escribe tu nota aquí]</div>
+        </details>
+
+        <details>
+          <summary>[ abre esto si quieres algo dulce ]</summary>
+          <div class="note-body">[escribe tu nota aquí]</div>
+        </details>
+      </section>
+
+      <section class="content">
+        <p>cosas que me gustan de ti:</p>
+        <ul>
+          <li>la forma en que me animas a seguir adelante</li>
+          <li>cómo haces que los días normales se sientan menos normales</li>
+          <li>que incluso desde lejos, igual te siento cerquita</li>
+        </ul>
+      </section>
+
+      <footer>
+        <p>Preparé esto para ti</p>
+        <p>esto es tuyo.</p>
+        <p>— <span class="muted">Cami</span></p>
+        <a class="tiny-link" href="./fotitos/index.html">fotitos →</a>
+      </footer>
+    </main>
+    <script>
+      (() => {
+        const lastUpdated = document.getElementById("last-updated");
+        const egg1 = document.getElementById("egg-1");
+        if (lastUpdated && egg1) {
+          lastUpdated.addEventListener("click", () => egg1.classList.toggle("show"));
+        }
+
+        // Easter egg suave: escribe "may" en cualquier parte.
+        const target = "may";
+        let buf = "";
+        window.addEventListener("keydown", (e) => {
+          const k = String(e.key || "").toLowerCase();
+          if (!/^[a-z]$/.test(k)) return;
+          buf = (buf + k).slice(-target.length);
+          if (buf === target && egg1) egg1.classList.add("show");
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Si luego añades assets de fotos sin querer commitearlos:
+# fotitos/fotos/
+

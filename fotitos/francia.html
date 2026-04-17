@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Francia — fotitos</title>
+    <style>
+      :root {
+        --bg: #fbd7e6;
+        --card: #fffdfd;
+        --border: #d8cfd6;
+        --muted: #7b6d79;
+        --ink: #3f3440;
+        --note-bg: #f6eef4;
+        --note-border: #e5d8e1;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        font-family: Georgia, "Times New Roman", serif;
+        color: var(--ink);
+        padding: 40px 20px;
+      }
+
+      .wrap {
+        max-width: 720px;
+        margin: 0 auto;
+        background: var(--card);
+        border: 1px solid var(--border);
+        padding: 28px 30px;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+      }
+
+      .top {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 6px;
+      }
+
+      h1 {
+        font-size: 30px;
+        font-weight: 400;
+        margin: 0;
+      }
+
+      .back {
+        font-size: 13px;
+        color: var(--muted);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(123, 109, 121, 0.35);
+        padding-bottom: 1px;
+        white-space: nowrap;
+      }
+
+      .back:hover {
+        color: var(--ink);
+        border-bottom-color: rgba(63, 52, 64, 0.55);
+      }
+
+      .sub {
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.7;
+        margin: 8px 0 18px 0;
+      }
+
+      .panel {
+        margin-top: 18px;
+        padding: 16px 18px;
+        background: var(--note-bg);
+        border: 1px solid var(--note-border);
+        line-height: 1.8;
+      }
+
+      .photos {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      @media (max-width: 520px) {
+        .photos {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .ph {
+        border: 1px dashed rgba(123, 109, 121, 0.6);
+        background: rgba(255, 255, 255, 0.6);
+        padding: 18px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <div class="top">
+        <h1>Francia</h1>
+        <a class="back" href="./index.html">← volver a fotitos</a>
+      </div>
+
+      <p class="sub">muchas gracias por invitarme al viaje, todo esto fue gracias a ti :D</p>
+
+      <div class="panel">
+        <div><strong>Paris, 2026</strong></div>
+        <div>Me encanto poder ensenarte mi ciudad, espero que pronto puedas volver para seguir ensenandote cositas</div>
+      </div>
+
+      <section class="photos" aria-label="fotos de Francia">
+        <div class="ph">foto 1 (placeholder)</div>
+        <div class="ph">foto 2 (placeholder)</div>
+      </section>
+    </main>
+  </body>
+</html>
