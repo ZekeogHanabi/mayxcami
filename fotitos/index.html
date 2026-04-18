@@ -333,7 +333,7 @@
             hour12: false,
           }).format(new Date());
           const hour = Number(hourStr);
-          if (Number.isFinite(hour) && hour >= 22) document.body.classList.add("night");
+          if (Number.isFinite(hour) && (hour >= 22 || hour < 6)) document.body.classList.add("night");
         } catch {}
 
         // Easter egg: constelación (triple clic cerca de una esquina)

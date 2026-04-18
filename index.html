@@ -526,7 +526,8 @@ yo también lo habría hecho jahsjdhsjd
               hour12: false,
             }).format(new Date());
             const hour = Number(hourStr);
-            if (Number.isFinite(hour) && hour >= 22) {
+            const isNight = Number.isFinite(hour) && (hour >= 22 || hour < 6);
+            if (isNight) {
               modal?.classList.add("show");
               document.body.classList.add("night");
             }
