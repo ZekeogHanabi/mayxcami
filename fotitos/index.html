@@ -325,6 +325,12 @@
           footer.addEventListener("dblclick", () => egg2.classList.toggle("show"));
         }
 
+        // Test rápido:
+        // - agrega ?night=1 para forzar modo noche
+        // - agrega ?night=0 para forzar modo día
+        const params = new URLSearchParams(window.location.search);
+        const nightOverride = params.get("night"); // "1" | "0" | null
+
         // Modo noche suave (hora Chicago)
         try {
           const hourStr = new Intl.DateTimeFormat("en-US", {
@@ -333,7 +339,9 @@
             hour12: false,
           }).format(new Date());
           const hour = Number(hourStr);
-          if (Number.isFinite(hour) && (hour >= 22 || hour < 6)) document.body.classList.add("night");
+          const autoNight = Number.isFinite(hour) && (hour >= 22 || hour < 6);
+          const isNight = nightOverride === "1" ? true : nightOverride === "0" ? false : autoNight;
+          if (isNight) document.body.classList.add("night");
         } catch {}
 
         // Easter egg: constelación (triple clic cerca de una esquina)

@@ -517,6 +517,13 @@ yo también lo habría hecho jahsjdhsjd
         if (modal) modal.addEventListener("click", (e) => e.target === modal && closeModal());
         window.addEventListener("keydown", (e) => e.key === "Escape" && closeModal());
 
+        // Test rápido:
+        // - agrega ?night=1 para forzar modo noche
+        // - agrega ?night=0 para forzar modo día
+        // (sirve para GitHub Pages / local sin esperar la hora)
+        const params = new URLSearchParams(window.location.search);
+        const nightOverride = params.get("night"); // "1" | "0" | null
+
         try {
           const dismissed = sessionStorage.getItem("lateModalDismissed") === "1";
           if (!dismissed) {
@@ -526,7 +533,8 @@ yo también lo habría hecho jahsjdhsjd
               hour12: false,
             }).format(new Date());
             const hour = Number(hourStr);
-            const isNight = Number.isFinite(hour) && (hour >= 22 || hour < 6);
+            const autoNight = Number.isFinite(hour) && (hour >= 22 || hour < 6);
+            const isNight = nightOverride === "1" ? true : nightOverride === "0" ? false : autoNight;
             if (isNight) {
               modal?.classList.add("show");
               document.body.classList.add("night");
