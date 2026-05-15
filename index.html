@@ -75,7 +75,7 @@
       }
 
       .decor.cat {
-        background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M38 44l-8-14 14 8c5-3 11-5 16-5s11 2 16 5l14-8-8 14c4 5 6 11 6 18 0 18-12 32-28 32S32 80 32 62c0-7 2-13 6-18z' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linejoin='round'/%3E%3Cpath d='M48 62c2 3 5 4 8 4m8-4c2 3 5 4 8 4' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linecap='round'/%3E%3Cpath d='M58 74c1.5 1.2 2.8 1.8 4 1.8s2.5-.6 4-1.8' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E\");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M38 44l-8-14 14 8c5-3 11-5 16-5s11 2 16 5l14-8-8 14c4 5 6 11 6 18 0 18-12 32-28 32S32 80 32 62c0-7 2-13 6-18z' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linejoin='round'/%3E%3Cpath d='M48 62c2 3 5 4 8 4m8-4c2 3 5 4 8 4' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linecap='round'/%3E%3Cpath d='M58 74c1.5 1.2 2.8 1.8 4 1.8s2.5-.6 4-1.8' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E");
       }
 
       @media (prefers-reduced-motion: no-preference) {
@@ -101,9 +101,19 @@
         }
       }
 
-      .wrap {
-        max-width: 720px;
+      .page {
+        display: flex;
+        gap: 28px;
+        max-width: 1220px;
         margin: 0 auto;
+        align-items: flex-start;
+        justify-content: center;
+      }
+
+      .wrap {
+        flex: 1 1 720px;
+        max-width: 720px;
+        min-width: 0;
         background: var(--card);
         border: 1px solid rgba(216, 207, 214, 0.65);
         padding: 30px 32px;
@@ -156,8 +166,10 @@
 
       .tiny-link:focus-visible,
       .back:focus-visible,
-      summary:focus-visible,
-      .modal-close:focus-visible {
+      .notes summary:focus-visible,
+      .day-letter > summary:focus-visible,
+      .modal-close:focus-visible,
+      .may15-coupon-btn:focus-visible {
         outline: 2px solid rgba(63, 52, 64, 0.35);
         outline-offset: 3px;
       }
@@ -189,7 +201,7 @@
         color: var(--muted);
       }
 
-      details {
+      .notes details {
         border-radius: 10px;
         padding: 10px 12px;
         transition: background 140ms ease;
@@ -197,15 +209,15 @@
         overflow: hidden;
       }
 
-      details + details {
+      .notes details + details {
         margin-top: 8px;
       }
 
-      details[open] {
+      .notes details[open] {
         background: rgba(255, 255, 255, 0.45);
       }
 
-      details[open]::after {
+      .notes details[open]::after {
         content: "";
         position: absolute;
         inset: -18px -18px auto auto;
@@ -237,7 +249,7 @@
         }
       }
 
-      summary {
+      .notes summary {
         cursor: pointer;
         user-select: none;
         line-height: 1.6;
@@ -358,6 +370,470 @@
         background: rgba(123, 109, 121, 0.35);
         transform-origin: left center;
       }
+
+      .calendar-aside {
+        flex: 0 0 440px;
+        width: 440px;
+        background: var(--card);
+        border: 1px solid rgba(216, 207, 214, 0.65);
+        padding: 20px 18px;
+        box-shadow:
+          0 10px 30px rgba(0, 0, 0, 0.04),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+        position: sticky;
+        top: 24px;
+      }
+
+      .calendar-row {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+      }
+
+      .calendar-main {
+        flex: 0 0 248px;
+        width: 248px;
+        min-width: 0;
+      }
+
+      .calendar-title {
+        font-family: var(--sans);
+        font-size: 12.5px;
+        color: var(--muted);
+        letter-spacing: 0.2px;
+        margin: 0 0 14px 0;
+      }
+
+      .calendar-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        font-family: var(--sans);
+      }
+
+      .calendar-month {
+        font-size: 14px;
+        color: var(--ink);
+        letter-spacing: 0.1px;
+      }
+
+      .calendar-nav-btn {
+        appearance: none;
+        border: 0;
+        background: transparent;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1;
+        padding: 4px 8px;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: color 140ms ease, background 140ms ease;
+      }
+
+      .calendar-nav-btn:hover {
+        color: var(--ink);
+        background: var(--note-bg);
+      }
+
+      .calendar-nav-btn:focus-visible {
+        outline: 2px solid rgba(63, 52, 64, 0.35);
+        outline-offset: 2px;
+      }
+
+      .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 2px;
+        font-family: var(--sans);
+        font-size: 11.5px;
+      }
+
+      .calendar-weekday {
+        text-align: center;
+        color: var(--muted);
+        padding: 4px 0 6px;
+        font-size: 10.5px;
+        letter-spacing: 0.15px;
+      }
+
+      .calendar-day {
+        appearance: none;
+        border: 0;
+        background: transparent;
+        font: inherit;
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        color: var(--ink);
+        position: relative;
+        padding: 0;
+        width: 100%;
+      }
+
+      .calendar-day--empty {
+        visibility: hidden;
+      }
+
+      .calendar-day--today {
+        background: var(--note-bg);
+        font-weight: 600;
+      }
+
+      .calendar-day--event {
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .calendar-day--event:hover {
+        background: var(--note-bg);
+      }
+
+      .calendar-day--selected {
+        background: var(--note-bg);
+        outline: 1px solid rgba(123, 109, 121, 0.35);
+      }
+
+      .calendar-day--event::after {
+        content: "";
+        position: absolute;
+        bottom: 3px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 4px;
+        border-radius: 999px;
+        background: rgba(123, 109, 121, 0.75);
+      }
+
+      .calendar-detail {
+        flex: 1;
+        min-width: 0;
+        padding: 12px 12px 10px;
+        background: var(--note-bg);
+        border: 1px solid var(--note-border);
+        border-radius: 10px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(6px);
+        transition:
+          opacity 180ms ease,
+          visibility 180ms ease,
+          transform 180ms ease;
+      }
+
+      .calendar-detail[hidden] {
+        display: none;
+      }
+
+      .calendar-detail--visible {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+      }
+
+      .calendar-detail-icon {
+        font-size: 22px;
+        line-height: 1;
+        margin-bottom: 8px;
+        color: #c97a94;
+      }
+
+      .calendar-detail-icon:empty,
+      .calendar-detail-icon[hidden] {
+        display: none;
+      }
+
+      .calendar-detail-date {
+        font-family: var(--sans);
+        font-size: 10.5px;
+        color: var(--muted);
+        letter-spacing: 0.15px;
+        margin: 0 0 6px 0;
+      }
+
+      .calendar-detail-label {
+        font-family: var(--sans);
+        font-size: 13px;
+        line-height: 1.45;
+        color: var(--ink);
+        margin: 0;
+      }
+
+      .calendar-detail-link {
+        color: var(--ink);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(123, 109, 121, 0.4);
+        transition: color 140ms ease, border-color 140ms ease;
+      }
+
+      .calendar-detail-link:hover {
+        color: #c97a94;
+        border-bottom-color: rgba(201, 122, 148, 0.65);
+      }
+
+      .day-letter {
+        margin: 0 0 28px 0;
+        padding: 18px 20px;
+        background: var(--note-bg);
+        border: 1px solid var(--note-border);
+        border-radius: 10px;
+        overflow: visible;
+      }
+
+      .day-letter[hidden] {
+        display: none;
+      }
+
+      .day-letter > summary {
+        cursor: pointer;
+        user-select: none;
+        line-height: 1.6;
+        font-size: 16px;
+        font-family: var(--sans);
+        letter-spacing: 0.1px;
+        color: var(--muted);
+        list-style: none;
+      }
+
+      .day-letter > summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .day-letter[open] > summary {
+        margin-bottom: 12px;
+        color: var(--ink);
+      }
+
+      .day-letter-body {
+        line-height: 1.85;
+        font-size: 16px;
+        white-space: pre-line;
+        margin: 0;
+      }
+
+      .day-letter-footer {
+        margin: 16px 0 0 0;
+        padding-top: 14px;
+        border-top: 1px solid var(--note-border);
+      }
+
+      .day-letter .may15-coupon-btn {
+        display: inline-block;
+        margin-top: 2px;
+      }
+
+      .countdowns {
+        margin-top: 18px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(221, 210, 218, 0.8);
+      }
+
+      .day-countdown {
+        text-align: center;
+        padding: 14px 0;
+      }
+
+      .day-countdown + .day-countdown {
+        border-top: 1px solid rgba(221, 210, 218, 0.55);
+        margin-top: 4px;
+      }
+
+      .day-countdown-title {
+        font-family: var(--sans);
+        font-size: 14px;
+        color: var(--muted);
+        letter-spacing: 0.2px;
+        margin: 0 0 12px 0;
+        line-height: 1.45;
+      }
+
+      .day-countdown-value {
+        font-family: var(--sans);
+        font-size: 44px;
+        font-weight: 400;
+        color: var(--ink);
+        line-height: 1;
+        letter-spacing: -0.5px;
+      }
+
+      .day-countdown-value--today {
+        font-size: 26px;
+        color: #c97a94;
+      }
+
+      .day-countdown-label {
+        font-family: var(--sans);
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 8px;
+        letter-spacing: 0.15px;
+      }
+
+      .day-countdown--together .day-countdown-value {
+        color: #c97a94;
+      }
+
+      .may15-extras {
+        margin-top: 14px;
+        padding-top: 14px;
+        border-top: 1px solid rgba(221, 210, 218, 0.55);
+        text-align: center;
+      }
+
+      .may15-extras[hidden] {
+        display: none;
+      }
+
+      .may15-time {
+        font-family: var(--sans);
+        font-size: 12.5px;
+        line-height: 1.55;
+        color: var(--muted);
+        white-space: pre-line;
+        margin: 0;
+      }
+
+      .may15-coupon-btn {
+        appearance: none;
+        border: 0;
+        background: transparent;
+        color: var(--muted);
+        font-family: var(--sans);
+        font-size: 12.5px;
+        letter-spacing: 0.2px;
+        cursor: pointer;
+        border-bottom: 1px solid rgba(123, 109, 121, 0.35);
+        padding: 0 0 2px 0;
+        transition: color 140ms ease, border-color 140ms ease;
+      }
+
+      .may15-coupon-btn:hover {
+        color: var(--ink);
+        border-bottom-color: rgba(63, 52, 64, 0.55);
+      }
+
+      .may15-coupon-btn:focus-visible {
+        outline: 2px solid rgba(63, 52, 64, 0.35);
+        outline-offset: 3px;
+      }
+
+      .celebration-layer {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 9999;
+        overflow: hidden;
+      }
+
+      .celebration-heart {
+        position: absolute;
+        color: #c97a94;
+        opacity: 0.85;
+        animation: heart-rise linear forwards;
+        text-shadow: 0 2px 8px rgba(201, 122, 148, 0.25);
+      }
+
+      @keyframes heart-rise {
+        0% {
+          transform: translateY(0) scale(0.85);
+          opacity: 0;
+        }
+        12% {
+          opacity: 0.9;
+        }
+        100% {
+          transform: translateY(-105vh) scale(1.05) rotate(12deg);
+          opacity: 0;
+        }
+      }
+
+      .modal-card--ticket {
+        border: 2px dashed rgba(201, 122, 148, 0.55);
+        background: linear-gradient(180deg, #fffdfd, #faf5f8);
+        position: relative;
+        padding-top: 22px;
+        padding-bottom: 18px;
+      }
+
+      .modal-card--ticket::before,
+      .modal-card--ticket::after {
+        content: "";
+        position: absolute;
+        left: 14px;
+        right: 14px;
+        height: 1px;
+        background: repeating-linear-gradient(
+          90deg,
+          rgba(201, 122, 148, 0.35) 0 6px,
+          transparent 6px 12px
+        );
+      }
+
+      .modal-card--ticket::before {
+        top: 12px;
+      }
+
+      .modal-card--ticket::after {
+        bottom: 12px;
+      }
+
+      .coupon-title {
+        font-family: var(--sans);
+        font-size: 13px;
+        letter-spacing: 0.25px;
+        text-transform: lowercase;
+        color: #c97a94;
+        margin: 8px 0 4px 0;
+      }
+
+      .coupon-subtitle {
+        font-family: var(--sans);
+        font-size: 12px;
+        color: var(--muted);
+        margin: 0 0 12px 0;
+      }
+
+      .coupon-list {
+        margin: 0;
+        padding-left: 20px;
+        font-size: 16px;
+        line-height: 1.75;
+      }
+
+      .calendar-detail-icon--tappable {
+        cursor: pointer;
+      }
+
+      @media (max-width: 960px) {
+        .page {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .calendar-aside {
+          flex: none;
+          width: 100%;
+          max-width: 480px;
+          margin: 0 auto;
+          position: static;
+        }
+
+        .calendar-row {
+          flex-wrap: wrap;
+        }
+
+        .calendar-main {
+          flex: 1 1 248px;
+        }
+
+        .calendar-detail {
+          flex: 1 1 160px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -365,14 +841,23 @@
     <div class="decor tr cat" aria-hidden="true" style="--r:10deg"></div>
     <div class="decor bl cat" aria-hidden="true" style="--r:8deg"></div>
     <div class="decor br heart" aria-hidden="true" style="--r:-10deg"></div>
+    <div class="page">
     <main class="wrap">
       <div class="meta">
         página personal / última actualización:
-        <span class="muted" id="last-updated" title="pista: tócame">17 de abril de 2026</span>
+        <span class="muted" id="last-updated" title="pista: tócame">15 de mayo de 2026</span>
         <div class="egg" id="egg-1">mini secreto:  te quiero mucho, mi amor c:</div>
       </div>
 
       <h1>para <span class="muted" id="may-name" title="(psst)">May</span></h1>
+
+      <details class="day-letter" id="day-letter" hidden>
+        <summary id="day-letter-summary">Abrelo hoy uwu</summary>
+        <p class="day-letter-body" id="day-letter-body"></p>
+        <div class="day-letter-footer">
+          <button type="button" class="may15-coupon-btn" id="may15-coupon-btn">tienes un cupón →</button>
+        </div>
+      </details>
 
       <section class="content">
         <p>hola</p>
@@ -449,6 +934,31 @@ no sé muy bien explicarlo mejor que eso, te quiero mucho mi amor c:
         <a class="tiny-link" href="#" id="no-press">[ no presionar ]</a>
       </footer>
     </main>
+
+    <aside class="calendar-aside" aria-label="calendario de fechas importantes">
+      <p class="calendar-title">fechas importantes</p>
+      <div class="calendar-row">
+        <div class="calendar-main">
+          <div class="calendar-nav">
+            <button type="button" class="calendar-nav-btn" id="cal-prev" aria-label="mes anterior">‹</button>
+            <span class="calendar-month" id="cal-month-label"></span>
+            <button type="button" class="calendar-nav-btn" id="cal-next" aria-label="mes siguiente">›</button>
+          </div>
+          <div class="calendar-grid" id="cal-grid"></div>
+        </div>
+        <div class="calendar-detail" id="cal-detail" aria-live="polite" hidden>
+          <div class="calendar-detail-icon" id="cal-detail-icon" aria-hidden="true"></div>
+          <p class="calendar-detail-date" id="cal-detail-date"></p>
+          <p class="calendar-detail-label" id="cal-detail-label"></p>
+        </div>
+      </div>
+      <div class="countdowns" id="countdowns" aria-live="polite"></div>
+      <div class="may15-extras" id="may15-extras" hidden>
+        <p class="may15-time" id="may15-time"></p>
+      </div>
+    </aside>
+    </div>
+
     <div class="modal" id="late-modal" role="dialog" aria-modal="true" aria-label="mensaje nocturno">
       <div class="modal-card">
         <p class="modal-text">
@@ -471,6 +981,32 @@ pero me gusta que estés aquí :D
         </div>
       </div>
     </div>
+    <div class="modal" id="special-date-modal" role="dialog" aria-modal="true" aria-label="fecha especial">
+      <div class="modal-card">
+        <p class="modal-text" id="special-date-modal-text"></p>
+        <div class="modal-actions">
+          <button class="modal-close" type="button" id="special-date-modal-close">ok</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="coupon-modal" role="dialog" aria-modal="true" aria-label="cupón especial">
+      <div class="modal-card modal-card--ticket">
+        <p class="coupon-title" id="coupon-modal-title">cupón especial</p>
+        <p class="coupon-subtitle" id="coupon-modal-subtitle">canjeable por (tú eliges cuándo):</p>
+        <ul class="coupon-list" id="coupon-modal-list"></ul>
+        <div class="modal-actions">
+          <button class="modal-close" type="button" id="coupon-modal-close">guardar cupón</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="secret-heart-modal" role="dialog" aria-modal="true" aria-label="mensaje secreto">
+      <div class="modal-card">
+        <p class="modal-text" id="secret-heart-modal-text"></p>
+        <div class="modal-actions">
+          <button class="modal-close" type="button" id="secret-heart-modal-close">ok</button>
+        </div>
+      </div>
+    </div>
     <div class="modal" id="no-press-modal" role="dialog" aria-modal="true" aria-label="no presionar">
       <div class="modal-card">
         <p class="modal-text">
@@ -483,6 +1019,13 @@ yo también lo habría hecho jahsjdhsjd
         </div>
       </div>
     </div>
+    <script src="./important-dates.js"></script>
+    <script src="./celebration-effects.js"></script>
+    <script src="./anniversary-letter.js"></script>
+    <script src="./calendar.js"></script>
+    <script src="./trip-countdown.js"></script>
+    <script src="./may15-extras.js"></script>
+    <script src="./special-date-popup.js"></script>
     <script>
       (() => {
         const lastUpdated = document.getElementById("last-updated");
