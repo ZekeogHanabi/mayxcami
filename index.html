@@ -270,6 +270,37 @@
         margin-top: 10px;
       }
 
+      .daily-song {
+        margin: 30px 0 0;
+        padding: 16px 18px;
+        background: #fff8fb;
+        border: 1px solid rgba(216, 207, 214, 0.9);
+        border-radius: 0;
+        font-family: var(--sans);
+      }
+
+      .daily-song-label {
+        margin: 0 0 8px;
+        color: var(--muted);
+        font-size: 12.5px;
+        letter-spacing: 0.2px;
+        text-transform: lowercase;
+      }
+
+      .daily-song-title {
+        margin: 0;
+        color: var(--ink);
+        font-size: 16px;
+        line-height: 1.55;
+      }
+
+      .daily-song-note {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 12.5px;
+        line-height: 1.55;
+      }
+
       footer {
         margin-top: 34px;
         padding-top: 18px;
@@ -926,6 +957,12 @@ no sé muy bien explicarlo mejor que eso, te quiero mucho mi amor c:
         </ul>
       </section>
 
+      <section class="daily-song" aria-label="cancion recomendada del dia">
+        <p class="daily-song-label">canci&oacute;n del d&iacute;a:</p>
+        <p class="daily-song-title" id="daily-song-title">cargando recomendaci&oacute;n...</p>
+        <p class="daily-song-note" id="daily-song-note"></p>
+      </section>
+
       <footer>
         <p>Preparé todo esto para ti</p>
         <p>esta es nuestra web uwu.</p>
@@ -1026,6 +1063,7 @@ yo también lo habría hecho jahsjdhsjd
     <script src="./trip-countdown.js"></script>
     <script src="./may15-extras.js"></script>
     <script src="./special-date-popup.js"></script>
+    <script src="./daily-song.js"></script>
     <script>
       (() => {
         const lastUpdated = document.getElementById("last-updated");
