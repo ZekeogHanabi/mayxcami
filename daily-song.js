@@ -64,7 +64,7 @@
     "Joe Dassin - Les Champs-Elysées",
     "Louise Attaque - J't'emmène au vent",
     "Natalia Lafourcade, Mare Advertencia, Rubén Blades - Tú Sí Sabes Quererme",
-    "La Oreja de Van Gogh - Rosas",
+    "The Strokes - Selfless",
     "Juanes - Para Tu Amor",
     "Carlos Vives - Volví a Nacer",
     "Tyler, The Creator, Kali Uchis - See You Again (feat. Kali Uchis)",
@@ -78,6 +78,8 @@
     "Foster The People - I Would Do Anything for You",
     "Ha*Ash - Lo Aprendí de Ti - HA-ASH Primera Fila - Hecho Realidad [En Vivo]",
     "Coldplay - Yellow",
+    "Café Tacvba - Aprovechate de mi",
+    "Andrés Cepeda - Piel Canela",
   ];
 
   const getTodayDate = () => {
@@ -107,8 +109,8 @@
   const note = document.getElementById("daily-song-note");
   if (!title) return;
 
-  const dayIndex = getDaysSinceStart(getTodayDate());
-  const songIndex = dayIndex % DAILY_SONGS.length;
+  const weekIndex = Math.floor(getDaysSinceStart(getTodayDate()) / 7);
+  const songIndex = weekIndex % DAILY_SONGS.length;
   title.textContent = DAILY_SONGS[songIndex];
   if (note) note.textContent = `playlist :3 (${songIndex + 1}/${DAILY_SONGS.length})`;
 })();
