@@ -27,6 +27,8 @@ te quiero mucho ♥`,
     label: "Cumple de May",
     recurring: true,
     popup: "♥ Hoy es tu cumpleaños, felicidades! ♥",
+    link: "./cumple.html",
+    linkText: "ver tu sorpresa →",
   },
   {
     date: "2026-06-06",
@@ -62,5 +64,5 @@ window.MAY15_EXTRAS = {
 // Contadores — edita fecha y título aquí
 window.COUNTDOWNS = [
   { date: "2026-06-15", title: "Días que faltan para tu viaje", pastLabel: "ya pasó tu viaje" },
-  { date: "2026-12-24", title: "días para navidad (quizá nos veamos :p)", pastLabel: "ya fue navidad" },
+  { date: "2026-12-24", title: "días para navidad (quizá nos veamos :p)", pastLabel: "ya fue navidad", id: "navidad" },
 ];

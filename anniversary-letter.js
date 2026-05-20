@@ -38,8 +38,8 @@
       return m === ANNIVERSARY_MONTH && d === ANNIVERSARY_DAY;
     });
 
-  const revealLetter = (openDetails = false) => {
-    if (!isMay15()) return;
+  const revealLetter = (openDetails = false, force = false) => {
+    if (!isMay15() && !force) return;
     const entry = findLetterEntry();
     if (!entry?.letter) return;
 
@@ -55,11 +55,10 @@
 
   let dosBuf = "";
   window.addEventListener("keydown", (e) => {
-    if (!isMay15()) return;
     const k = String(e.key || "").toLowerCase();
     if (!/^[a-z]$/.test(k)) return;
     dosBuf = (dosBuf + k).slice(-DOS_TARGET.length);
-    if (dosBuf === DOS_TARGET) revealLetter(true);
+    if (dosBuf === DOS_TARGET) revealLetter(true, true);
   });
 
   if (isMay15()) {

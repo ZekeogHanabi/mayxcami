@@ -708,6 +708,11 @@
         color: #c97a94;
       }
 
+      @keyframes padoru-shake {
+        0%, 100% { transform: rotate(-6deg); }
+        50% { transform: rotate(6deg); }
+      }
+
       .may15-extras {
         margin-top: 14px;
         padding-top: 14px;
@@ -876,7 +881,7 @@
     <main class="wrap">
       <div class="meta">
         página personal / última actualización:
-        <span class="muted" id="last-updated" title="pista: tócame">15 de mayo de 2026</span>
+        <span class="muted" id="last-updated" title="pista: tócame">21 de mayo de 2026</span>
         <div class="egg" id="egg-1">mini secreto:  te quiero mucho, mi amor c:</div>
       </div>
 
@@ -1022,6 +1027,7 @@ pero me gusta que estés aquí :D
       <div class="modal-card">
         <p class="modal-text" id="special-date-modal-text"></p>
         <div class="modal-actions">
+          <a href="#" id="special-date-modal-link" class="tiny-link" style="margin-right: auto; margin-top: 0; display: none;">ver sorpresita →</a>
           <button class="modal-close" type="button" id="special-date-modal-close">ok</button>
         </div>
       </div>

@@ -44,6 +44,7 @@
   const modal = document.getElementById("special-date-modal");
   const modalText = document.getElementById("special-date-modal-text");
   const modalClose = document.getElementById("special-date-modal-close");
+  const modalLink = document.getElementById("special-date-modal-link");
 
   if (!modal || !modalText) return;
 
@@ -55,6 +56,17 @@
   } catch {}
 
   modalText.textContent = entry.popup;
+
+  if (modalLink) {
+    if (entry.link) {
+      modalLink.href = entry.link;
+      modalLink.textContent = entry.linkText || "ver sorpresita →";
+      modalLink.style.display = "inline-block";
+    } else {
+      modalLink.style.display = "none";
+    }
+  }
+
   modal.classList.add("show");
   window.spawnCelebrationHearts?.(22);
 

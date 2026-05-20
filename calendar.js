@@ -25,6 +25,7 @@
       label: e.label,
       icon: e.icon || null,
       youtube: e.youtube || null,
+      link: e.link || null,
       linkText: e.linkText || "escuchar →",
       letter: e.letter || null,
       recurring: Boolean(e.recurring),
@@ -92,12 +93,15 @@
     detailLabel.innerHTML = "";
     events.forEach((e, i) => {
       if (i > 0) detailLabel.appendChild(document.createTextNode(" · "));
-      if (e.youtube && !String(e.youtube).includes("EDITAR")) {
+      const targetLink = e.link || (e.youtube && !String(e.youtube).includes("EDITAR") ? e.youtube : null);
+      if (targetLink) {
         detailLabel.appendChild(document.createTextNode(`${e.label} · `));
         const link = document.createElement("a");
-        link.href = e.youtube;
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
+        link.href = targetLink;
+        if (targetLink.startsWith("http")) {
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+        }
         link.className = "calendar-detail-link";
         link.textContent = e.linkText;
         detailLabel.appendChild(link);

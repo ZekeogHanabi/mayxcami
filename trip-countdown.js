@@ -64,8 +64,57 @@
     }
 
     block.appendChild(title);
-    block.appendChild(value);
-    if (label.textContent) block.appendChild(label);
+
+    if (cfg.id === "navidad") {
+      block.classList.add("day-countdown--navidad");
+      
+      const row = document.createElement("div");
+      row.style.display = "flex";
+      row.style.alignItems = "center";
+      row.style.justifyContent = "center";
+      row.style.gap = "14px";
+      row.style.marginTop = "4px";
+
+      const valWrapper = document.createElement("div");
+      valWrapper.style.display = "flex";
+      valWrapper.style.flexDirection = "column";
+      valWrapper.style.alignItems = "center";
+      
+      // Eliminar márgenes extras para alineación perfecta
+      value.style.margin = "0";
+      valWrapper.appendChild(value);
+      
+      if (label.textContent) {
+        label.style.margin = "4px 0 0 0";
+        valWrapper.appendChild(label);
+      }
+      
+      const padoruWrapper = document.createElement("div");
+      padoruWrapper.className = "padoru-wrapper";
+      padoruWrapper.style.width = "48px";
+      padoruWrapper.style.height = "48px";
+      padoruWrapper.style.opacity = "0.9";
+      padoruWrapper.style.animation = "padoru-shake 2.5s ease-in-out infinite";
+      padoruWrapper.style.transformOrigin = "bottom center";
+
+      const padoruImg = document.createElement("img");
+      padoruImg.src = "./padoru.png";
+      padoruImg.alt = "Padoru";
+      padoruImg.style.width = "100%";
+      padoruImg.style.height = "100%";
+      padoruImg.style.display = "block";
+      padoruImg.style.objectFit = "contain";
+
+      padoruWrapper.appendChild(padoruImg);
+
+      row.appendChild(valWrapper);
+      row.appendChild(padoruWrapper);
+      block.appendChild(row);
+    } else {
+      block.appendChild(value);
+      if (label.textContent) block.appendChild(label);
+    }
+
     host.appendChild(block);
   }
 })();

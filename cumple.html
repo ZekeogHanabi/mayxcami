@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>¡Feliz Cumpleaños, May! 🎂</title>
+    <style>
+      :root {
+        --bg: #f9a4c5;
+        --card: #fffbfd;
+        --border: #f2bed1;
+        --muted: #a6627c;
+        --ink: #4f1e31;
+        --note-bg: #fdf2f6;
+        --note-border: #fcd5e4;
+        --accent: #d84b7f;
+        --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(180deg, var(--bg), #fff0f5);
+        font-family: Georgia, "Times New Roman", serif;
+        color: var(--ink);
+        padding: 40px 20px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .decor {
+        position: fixed;
+        width: 120px;
+        height: 120px;
+        opacity: 0.18;
+        pointer-events: none;
+        background-repeat: no-repeat;
+        background-size: contain;
+        filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.05));
+        z-index: 1;
+      }
+
+      .decor.tl {
+        top: 20px;
+        left: 20px;
+        transform: rotate(-8deg);
+      }
+
+      .decor.tr {
+        top: 20px;
+        right: 20px;
+        transform: rotate(10deg);
+      }
+
+      .decor.bl {
+        bottom: 20px;
+        left: 20px;
+        transform: rotate(8deg);
+      }
+
+      .decor.br {
+        bottom: 20px;
+        right: 20px;
+        transform: rotate(-10deg);
+      }
+
+      .decor.cake {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M20 95c0 6 25 10 40 10s40-4 40-10' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linecap='round'/%3E%3Cpath d='M15 95h90' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linecap='round'/%3E%3Cpath d='M25 95V65h70v30' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linejoin='round'/%3E%3Cpath d='M25 72c5 3 10 3 15 0s10-3 15 0 10 3 15 0 10-3 15 0' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linecap='round'/%3E%3Cpath d='M35 65V45h50v20' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linejoin='round'/%3E%3Cpath d='M35 52c5 2 10 2 15 0s10-2 15 0 10 2 15 0' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linecap='round'/%3E%3Cpath d='M48 45V33 M60 45V27 M72 45V33' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linecap='round'/%3E%3Cpath d='M48 29c1.5-2.5 0-5-1.5-6.5c-1.5 1.5-3 4-1.5 6.5s3 2.5 3 0z' fill='none' stroke='%237b6d79' stroke-width='2.5' stroke-linejoin='round'/%3E%3Cpath d='M60 23c1.5-2.5 0-5-1.5-6.5c-1.5 1.5-3 4-1.5 6.5s3 2.5 3 0z' fill='none' stroke='%237b6d79' stroke-width='2.5' stroke-linejoin='round'/%3E%3Cpath d='M72 29c1.5-2.5 0-5-1.5-6.5c-1.5 1.5-3 4-1.5 6.5s3 2.5 3 0z' fill='none' stroke='%237b6d79' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E");
+      }
+
+      .decor.gift {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect x='25' y='45' width='70' height='55' rx='6' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linejoin='round'/%3E%3Crect x='20' y='35' width='80' height='15' rx='3' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linejoin='round'/%3E%3Cpath d='M60 35v65' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linecap='round'/%3E%3Cpath d='M60 35c-10-10-25-5-15 5c10-10 5-25-5-15z' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linejoin='round'/%3E%3Cpath d='M60 35c10-10 25-5 15 5c-10-10-5-25 5-15z' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linejoin='round'/%3E%3C/svg%3E");
+      }
+
+      .decor.balloon {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M60 20c-20 0-30 15-30 32s15 32 30 32s30-15 30-32s-10-32-30-32z' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linejoin='round'/%3E%3Cpath d='M56 84l4 6l4-6z' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linejoin='round'/%3E%3Cpath d='M60 90c-3 10 3 20 0 25' fill='none' stroke='%237b6d79' stroke-width='2.8' stroke-linecap='round'/%3E%3Cpath d='M45 35c-5 5-5 12 0 15' fill='none' stroke='%237b6d79' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E");
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .decor {
+          animation: floaty 7s ease-in-out infinite;
+        }
+        .decor.tr, .decor.bl {
+          animation-duration: 8.5s;
+        }
+      }
+
+      @keyframes floaty {
+        0% { transform: translateY(0) scale(1) rotate(var(--r, 0deg)); }
+        50% { transform: translateY(-5px) scale(1.03) rotate(var(--r, 0deg)); }
+        100% { transform: translateY(0) scale(1) rotate(var(--r, 0deg)); }
+      }
+
+      .wrap {
+        flex: 1 1 720px;
+        max-width: 720px;
+        min-width: 0;
+        margin: 0 auto;
+        background: var(--card);
+        border: 1px solid rgba(242, 190, 209, 0.65);
+        padding: 30px 32px;
+        box-shadow:
+          0 10px 30px rgba(0, 0, 0, 0.04),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+        position: relative;
+        z-index: 2;
+      }
+
+      .wrap::before {
+        content: "";
+        position: absolute;
+        top: -14px;
+        right: 18px;
+        width: 52px;
+        height: 52px;
+        opacity: 0.22;
+        background-repeat: no-repeat;
+        background-size: contain;
+        transform: rotate(6deg);
+        filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.05));
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M60 102s-31-19.7-45.8-38.4C2.8 47.9 8.1 27.9 25.6 22.6c10.4-3.1 20.9 1.2 27.3 9.1 6.4-7.9 17-12.2 27.3-9.1 17.5 5.3 22.8 25.3 11.4 41C91 82.3 60 102 60 102z' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linejoin='round'/%3E%3C/svg%3E");
+      }
+
+      .meta {
+        font-family: var(--sans);
+        font-size: 12.5px;
+        color: var(--muted);
+        margin-bottom: 18px;
+        letter-spacing: 0.2px;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .back {
+        font-family: var(--sans);
+        font-size: 12.5px;
+        letter-spacing: 0.2px;
+        color: var(--muted);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(166, 98, 124, 0.35);
+        padding-bottom: 1px;
+        white-space: nowrap;
+        transition: color 140ms ease, border-color 140ms ease;
+      }
+
+      .back:hover {
+        color: var(--ink);
+        border-bottom-color: var(--ink);
+      }
+
+      h1 {
+        font-size: 30px;
+        font-weight: 400;
+        margin: 0 0 24px 0;
+        color: var(--ink);
+      }
+
+      .content {
+        line-height: 1.9;
+        font-size: 17px;
+      }
+
+      .interactive-cake-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 36px 0;
+        padding: 24px;
+        background: var(--note-bg);
+        border: 1px dashed var(--note-border);
+        border-radius: 0;
+        text-align: center;
+      }
+
+      .interactive-cake {
+        width: 140px;
+        height: 140px;
+        cursor: pointer;
+        transition: transform 200ms ease;
+        position: relative;
+      }
+
+      .interactive-cake:hover {
+        transform: scale(1.05);
+      }
+
+      .interactive-cake:active {
+        transform: scale(0.95);
+      }
+
+      .cake-label {
+        font-family: var(--sans);
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 14px;
+        letter-spacing: 0.1px;
+      }
+
+      .cake-wish-msg {
+        font-family: var(--sans);
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--accent);
+        margin-top: 10px;
+        min-height: 24px;
+        opacity: 0;
+        transform: translateY(4px);
+        transition: opacity 300ms ease, transform 300ms ease;
+      }
+
+      .cake-wish-msg.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .notes-grid {
+        margin: 30px 0;
+      }
+
+      .birthday-card-box {
+        background: #fff8fa;
+        border: 1px solid var(--border);
+        border-radius: 0;
+        padding: 22px 24px;
+        margin-bottom: 16px;
+        box-shadow: 0 4px 12px rgba(166, 98, 124, 0.04);
+      }
+
+      .birthday-card-box h3 {
+        margin: 0 0 10px 0;
+        font-size: 18px;
+        font-weight: 400;
+        color: var(--accent);
+        font-family: var(--sans);
+      }
+
+      .birthday-card-box p {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.8;
+      }
+
+      footer {
+        margin-top: 40px;
+        padding-top: 24px;
+        border-top: 1px solid rgba(242, 190, 209, 0.6);
+        font-size: 15px;
+        text-align: center;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="decor tl cake" aria-hidden="true" style="--r:-8deg"></div>
+    <div class="decor tr balloon" aria-hidden="true" style="--r:10deg"></div>
+    <div class="decor bl gift" aria-hidden="true" style="--r:8deg"></div>
+    <div class="decor br balloon" aria-hidden="true" style="--r:-10deg"></div>
+
+    <main class="wrap">
+      <div class="meta" style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px;">
+        <div>
+          sorpresita especial / fecha de hoy:
+          <span class="muted">20 de mayo de 2026</span>
+        </div>
+        <a href="./index.html" class="back">← volver</a>
+      </div>
+
+      <h1>Es tu cumple <span class="muted">uwu</span></h1>
+
+      <section class="content">
+        <p>Hoy es un día increíble porque es tu cumple :3. Quería hacerte un lugarcito bonito especial solo para tu cumple</p>
+        <p>Espero que sea un año lleno de cosas maravillosas, risas y que podamos seguir compartiendo momentos tan lindos juntos (diciembre ahi te vamos). Te mereces todo lo mejor hoy y siempre, eres una persona preciosa que merece todo de mi y de este mundo</p>
+      </section>
+
+      <!-- Interactive Cake Section -->
+      <section class="interactive-cake-container" aria-label="Pastel interactivo">
+        <svg class="interactive-cake" id="cake-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <!-- Plate -->
+          <path d="M15 95c0 6 25 10 45 10s45-4 45-10" fill="none" stroke="#d84b7f" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M10 95h100" fill="none" stroke="#4f1e31" stroke-width="4.5" stroke-linecap="round"/>
+          <!-- Cake Base Layer -->
+          <path d="M20 95V65h80v30" fill="#fff" stroke="#4f1e31" stroke-width="4" stroke-linejoin="round"/>
+          <!-- Frosting decoration -->
+          <path d="M20 72c6.6 4 13.3 4 20 0s13.3-4 20 0 13.3 4 20 0 13.3-4 20 0" fill="none" stroke="#d84b7f" stroke-width="3.5" stroke-linecap="round"/>
+          <!-- Cake Top Layer -->
+          <path d="M32 65V42h56v23" fill="#fff" stroke="#4f1e31" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M32 50c4.6 3 9.3 3 14 0s9.3-3 14 0 9.3 3 14 0 9.3-3 14 0" fill="none" stroke="#d84b7f" stroke-width="3.5" stroke-linecap="round"/>
+          <!-- Candle -->
+          <path d="M60 42V25" fill="none" stroke="#a6627c" stroke-width="4" stroke-linecap="round"/>
+          <!-- Flame -->
+          <path id="cake-flame" d="M60 21c2-3.5 0-7-2-9c-2 2-4 5.5-2 9s4 3.5 4 0z" fill="#ff7e47" stroke="#ff4500" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <div class="cake-label" id="cake-instruction">Haz clic en el pastel para soplar la vela y pedir un deseo ♥</div>
+        <div class="cake-wish-msg" id="cake-wish-msg">¡Deseo pedido! Te quiero muchísimo ♥</div>
+      </section>
+
+      <section class="notes-grid" aria-label="Mensajes especiales">
+        <div class="birthday-card-box">
+          <h3>Un deseo para ti ✨</h3>
+          <p>Deseo que este nuevo año de vida te traiga toda la paz, felicidad y momentos dulces que siempre te mereces.!! Que nunca te falten razones para sonreír, y si te faltan, intentaré dartelas.</p>
+        </div>
+
+        <div class="birthday-card-box">
+          <h3>Mi parte favorita de hoy 😊</h3>
+          <p>Poder celebrarte, aunque sea con pequeños detalles y llamadas, y recordarte lo valiosa e importante que eres en mi vida. ¡Que cumplas muchos más! :3</p>
+        </div>
+      </section>
+
+      <footer>
+        <p>Preparado con mucho cariño para May</p>
+        <p>¡Feliz Cumpleaños! 🎉</p>
+        <p>— Cami</p>
+      </footer>
+    </main>
+
+    <script src="./celebration-effects.js"></script>
+    <script>
+      (() => {
+        // Lanzar una hermosa lluvia de corazones al cargar la página
+        window.addEventListener("load", () => {
+          if (window.spawnCelebrationHearts) {
+            window.spawnCelebrationHearts(32);
+          }
+        });
+
+        // Soplar la vela del pastel interactivo
+        const cakeSvg = document.getElementById("cake-svg");
+        const flame = document.getElementById("cake-flame");
+        const cakeWishMsg = document.getElementById("cake-wish-msg");
+        const cakeInstruction = document.getElementById("cake-instruction");
+        let candleBlown = false;
+
+        if (cakeSvg && flame) {
+          cakeSvg.addEventListener("click", () => {
+            if (candleBlown) return;
+            candleBlown = true;
+            
+            // Apagar la vela (desvanecer llama)
+            flame.style.transition = "opacity 400ms ease, transform 400ms ease";
+            flame.style.opacity = "0";
+            flame.style.transform = "scale(0) translateY(10px)";
+            
+            // Mostrar mensaje de deseo
+            if (cakeWishMsg) {
+              cakeWishMsg.classList.add("show");
+            }
+            if (cakeInstruction) {
+              cakeInstruction.textContent = "";
+            }
+
+            // Lanzar una enorme lluvia de celebración
+            if (window.spawnCelebrationHearts) {
+              window.spawnCelebrationHearts(38);
+            }
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
