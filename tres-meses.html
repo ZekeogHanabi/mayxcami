@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Felices 3 Meses ♥</title>
+    <style>
+      :root {
+        --bg: #120d1f;
+        --card: #ffffff;
+        --border: rgba(216, 207, 214, 0.65);
+        --muted: #847688;
+        --ink: #2b1d30;
+        --accent: #d84b7f;
+        --accent-hover: #c2386c;
+        --gold: #f39c12;
+        --gold-light: #fbeecd;
+        --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: radial-gradient(circle at center, #1e1633 0%, #0a0614 100%);
+        font-family: Georgia, "Times New Roman", serif;
+        color: #ebd5ff;
+        padding: 40px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      /* Decoraciones vectoriales en las esquinas */
+      .decor {
+        position: fixed;
+        width: 120px;
+        height: 120px;
+        opacity: 0.16;
+        pointer-events: none;
+        background-repeat: no-repeat;
+        background-size: contain;
+        z-index: 1;
+      }
+
+      .decor.tl {
+        top: 20px;
+        left: 20px;
+        transform: rotate(-8deg);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M40 25a35 35 0 0 0 45 45a35 35 0 1 1-45-45z' fill='none' stroke='%23ebd5ff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M85 30l2 4l4 2l-4 2l-2 4l-2-4l-4-2l4-2z' fill='none' stroke='%23ffd700' stroke-width='2.2'/%3E%3C/svg%3E");
+      }
+
+      .decor.tr.cat {
+        top: 20px;
+        right: 20px;
+        transform: rotate(10deg);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M30 46 L20 20 L45 36 M90 46 L100 20 L75 36' fill='none' stroke='%23ebd5ff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M25 50 C20 75 40 95 60 95 C80 95 100 75 95 50 C90 35 30 35 25 50 Z' fill='none' stroke='%23ebd5ff' stroke-width='3.2' stroke-linejoin='round'/%3E%3Cpath d='M43 56 Q48 50 53 56 M67 56 Q72 50 77 56' fill='none' stroke='%23ebd5ff' stroke-width='3.2' stroke-linecap='round'/%3E%3Cpath d='M54 65 Q57 69 60 65 Q63 69 66 65' fill='none' stroke='%23ebd5ff' stroke-width='2.8' stroke-linecap='round'/%3E%3Cpath d='M20 62 L8 60 M21 70 L9 72 M100 62 L112 60 M99 70 L111 72' fill='none' stroke='%23ebd5ff' stroke-width='2.8' stroke-linecap='round'/%3E%3C/svg%3E");
+        pointer-events: auto;
+        cursor: pointer;
+      }
+
+      .decor.bl.cat {
+        bottom: 20px;
+        left: 20px;
+        transform: rotate(8deg);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M30 46 L20 20 L45 36 M90 46 L100 20 L75 36' fill='none' stroke='%23ebd5ff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M25 50 C20 75 40 95 60 95 C80 95 100 75 95 50 C90 35 30 35 25 50 Z' fill='none' stroke='%23ebd5ff' stroke-width='3.2' stroke-linejoin='round'/%3E%3Cpath d='M43 56 Q48 50 53 56 M67 56 Q72 50 77 56' fill='none' stroke='%23ebd5ff' stroke-width='3.2' stroke-linecap='round'/%3E%3Cpath d='M54 65 Q57 69 60 65 Q63 69 66 65' fill='none' stroke='%23ebd5ff' stroke-width='2.8' stroke-linecap='round'/%3E%3Cpath d='M20 62 L8 60 M21 70 L9 72 M100 62 L112 60 M99 70 L111 72' fill='none' stroke='%23ebd5ff' stroke-width='2.8' stroke-linecap='round'/%3E%3C/svg%3E");
+        pointer-events: auto;
+        cursor: pointer;
+      }
+
+      .decor.br {
+        bottom: 20px;
+        right: 20px;
+        transform: rotate(-10deg);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M60 20l12 28l28 12l-28 12l-12 28l-12-28l-28-12l28-12z' fill='none' stroke='%23ffd700' stroke-width='3.2' stroke-linejoin='round'/%3E%3C/svg%3E");
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .decor {
+          animation: floaty 6s ease-in-out infinite;
+        }
+        .decor.tr, .decor.bl {
+          animation-duration: 8s;
+        }
+      }
+
+      @keyframes floaty {
+        0% { transform: translateY(0) scale(1) rotate(var(--r, 0deg)); }
+        50% { transform: translateY(-6px) scale(1.02) rotate(var(--r, 0deg)); }
+        100% { transform: translateY(0) scale(1) rotate(var(--r, 0deg)); }
+      }
+
+      .wrap {
+        flex: 1 1 720px;
+        max-width: 720px;
+        min-width: 0;
+        background: var(--card);
+        border: 1px solid var(--border);
+        padding: 38px 40px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+        position: relative;
+        color: var(--ink);
+        z-index: 5;
+      }
+
+      .wrap::before {
+        content: "";
+        position: absolute;
+        top: -14px;
+        right: 18px;
+        width: 52px;
+        height: 52px;
+        opacity: 0.18;
+        background-repeat: no-repeat;
+        background-size: contain;
+        transform: rotate(6deg);
+        filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.05));
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M60 102s-31-19.7-45.8-38.4C2.8 47.9 8.1 27.9 25.6 22.6c10.4-3.1 20.9 1.2 27.3 9.1 6.4-7.9 17-12.2 27.3-9.1 17.5 5.3 22.8 25.3 11.4 41C91 82.3 60 102 60 102z' fill='none' stroke='%237b6d79' stroke-width='3.2' stroke-linejoin='round'/%3E%3C/svg%3E");
+      }
+
+      h1 {
+        font-family: Georgia, serif;
+        font-size: 26px;
+        font-weight: normal;
+        margin: 0 0 16px 0;
+        text-align: center;
+        letter-spacing: -0.2px;
+      }
+
+      .intro-text {
+        font-family: var(--sans);
+        font-size: 14px;
+        color: var(--muted);
+        text-align: center;
+        margin-bottom: 30px;
+        line-height: 1.5;
+      }
+
+      /* Fila de estrellas clickeables */
+      .stars-row {
+        display: flex;
+        justify-content: space-around;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .star-btn {
+        flex: 1;
+        background: #faf6fc;
+        border: 1px solid rgba(216, 207, 214, 0.7);
+        padding: 16px 8px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: all 250ms ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .star-btn:hover {
+        background: #fdfcff;
+        border-color: #c5a3e0;
+      }
+
+      .star-icon {
+        font-size: 28px;
+        color: #d1c7d6;
+        transition: transform 300ms ease, color 300ms ease;
+        margin-bottom: 6px;
+      }
+
+      .star-label {
+        font-family: Georgia, serif;
+        font-size: 14.5px;
+        color: var(--ink);
+        margin-bottom: 4px;
+      }
+
+      .star-date {
+        font-family: var(--sans);
+        font-size: 11px;
+        color: var(--muted);
+      }
+
+      /* Estrella seleccionada */
+      .star-btn--active {
+        background: #fffef0;
+        border-color: var(--gold);
+        box-shadow: 0 0 10px rgba(243, 156, 18, 0.15);
+      }
+
+      .star-btn--active .star-icon {
+        color: var(--gold);
+        transform: scale(1.15) rotate(72deg);
+        text-shadow: 0 0 8px rgba(243, 156, 18, 0.5);
+      }
+
+      /* Contenedor de memorias */
+      .memories-container {
+        min-height: 80px;
+        margin-bottom: 24px;
+      }
+
+      .memory-card {
+        border-left: 3px solid var(--accent);
+        background: #fffdfd;
+        padding: 14px 18px;
+        margin-top: 12px;
+        animation: slideDown 400ms cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .memory-title {
+        font-family: Georgia, serif;
+        font-size: 14.5px;
+        font-weight: bold;
+        color: var(--accent);
+        margin-bottom: 6px;
+      }
+
+      .memory-body {
+        font-family: var(--sans);
+        font-size: 13.5px;
+        line-height: 1.55;
+        margin: 0;
+        color: var(--ink);
+      }
+
+      /* Sorpresa Final */
+      .final-card {
+        border: 1px solid #f2bed1;
+        background: #fffcfd;
+        padding: 24px;
+        margin-top: 28px;
+        text-align: center;
+        position: relative;
+        animation: fadeInScale 600ms cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+      }
+
+      @keyframes fadeInScale {
+        from {
+          opacity: 0;
+          transform: scale(0.97);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .final-heart {
+        font-size: 32px;
+        color: var(--accent);
+        display: inline-block;
+        animation: pulse 1.2s ease-in-out infinite;
+        margin-bottom: 8px;
+      }
+
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.15); }
+      }
+
+      .final-title {
+        font-family: Georgia, serif;
+        font-size: 20px;
+        font-weight: normal;
+        margin: 0 0 12px 0;
+        color: var(--accent);
+      }
+
+      .final-body {
+        font-family: Georgia, serif;
+        font-size: 14.5px;
+        line-height: 1.6;
+        color: var(--ink);
+        max-width: 560px;
+        margin: 0 auto;
+      }
+
+      .final-body p {
+        margin: 8px 0;
+      }
+
+      /* Botón volver */
+      .footer-nav {
+        margin-top: 32px;
+        text-align: center;
+        border-top: 1px solid rgba(221, 210, 218, 0.55);
+        padding-top: 18px;
+      }
+
+      .back-link {
+        font-family: var(--sans);
+        font-size: 12.5px;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 200ms ease;
+      }
+
+      .back-link:hover {
+        color: var(--accent);
+      }
+
+      /* Capa para lluvia de estrellas */
+      #celebration-layer {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 9999;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="decor tl" aria-hidden="true"></div>
+    <div class="decor tr cat" aria-hidden="true" style="--r:10deg"></div>
+    <div class="decor bl cat" aria-hidden="true" style="--r:8deg"></div>
+    <div class="decor br" aria-hidden="true"></div>
+
+    <main class="wrap">
+      <h1>nuestros tres meses</h1>
+      <div class="intro-text">
+        Toca cada estrella para iluminar el cielo y recordar lo que hemos construido juntos.. ⭐
+      </div>
+
+      <div class="stars-row">
+        <button type="button" class="star-btn" id="star-1" data-month="1" aria-label="Primer mes">
+          <div class="star-icon" aria-hidden="true">★</div>
+          <div class="star-label">1 mes</div>
+          <div class="star-date">15 de abril</div>
+        </button>
+        <button type="button" class="star-btn" id="star-2" data-month="2" aria-label="Segundo mes">
+          <div class="star-icon" aria-hidden="true">★</div>
+          <div class="star-label">2 meses</div>
+          <div class="star-date">15 de mayo</div>
+        </button>
+        <button type="button" class="star-btn" id="star-3" data-month="3" aria-label="Tercer mes">
+          <div class="star-icon" aria-hidden="true">★</div>
+          <div class="star-label">3 meses</div>
+          <div class="star-date">15 de junio</div>
+        </button>
+      </div>
+
+      <div class="memories-container">
+        <div class="memory-card" id="memory-1" hidden>
+          <div class="memory-title">🌱 Primer Mes — 15 de Abril</div>
+          <p class="memory-body">fue el inicio de nuestra relacion, aun nos estabamos conociendo poco a poco, quiza un poco timidos pero con muchas ganas de estar juntos, pasamos largas noches en llamada, y largos dias también. Pudiste acompañarme por buenos momentos, e hiciste mas pequeños a los malos momentos; espero haber hecho lo mismo contigo, te amo muchisimo</p>
+        </div>
+        <div class="memory-card" id="memory-2" hidden>
+          <div class="memory-title">💖 Segundo Mes — 15 de Mayo</div>
+          <p class="memory-body">Al Segundo mes llegamos a ser un poco mas intimos, me di cuenta de que eres completamente imprescindible en mi vida, celebramos tu cumple y pasamos bonitos momentos juntos. Tambien me relacioné mas con tu mami y tu familia, fuiste a Bolivia y pasé mis examenes. Fue un muy bonito mes lleno de realizaciones :3</p>
+        </div>
+        <div class="memory-card" id="memory-3" hidden>
+          <div class="memory-title">🌟 Tercer Mes — 15 de Junio (¡Hoy!)</div>
+          <p class="memory-body">Este tercer mes estuvo marcado de dificultades, pero creo que logramos sortearlas bien :3 me alegra que estés a punto de iniciar una nueva etapa en tu vida y espero que siga marcada de mucha Felicidad y de amor (el cual vendra de mi parte c:</p>
+        </div>
+      </div>
+
+      <div class="final-card" id="final-card" hidden>
+        <div class="final-heart" aria-hidden="true">♥</div>
+        <h2 class="final-title">Felices 3 meses, mi amor</h2>
+        <div class="final-body">
+          <p>Gracoas por estos 3 meses llenos de paciencia, risas y momentos hermosos</p>
+          <p>Soy muy afortunado de tenerte a mi lado, eres preciosa, hermosa y una persona encantadora. Te amo muchisimo</p>
+        </div>
+      </div>
+
+      <div class="footer-nav">
+        <a href="./index.html" class="back-link">← volver a la página principal</a>
+      </div>
+    </main>
+
+    <script src="./celebration-effects.js"></script>
+    <script>
+      (() => {
+        const stars = document.querySelectorAll(".star-btn");
+        const finalCard = document.getElementById("final-card");
+        const clickedMonths = new Set();
+
+        stars.forEach(star => {
+          star.addEventListener("click", () => {
+            const month = star.dataset.month;
+            clickedMonths.add(month);
+            star.classList.add("star-btn--active");
+            
+            // Mostrar la memoria correspondiente
+            const targetMemory = document.getElementById(`memory-${month}`);
+            if (targetMemory) {
+              targetMemory.hidden = false;
+            }
+
+            // Comprobar si se completaron los 3 meses
+            if (clickedMonths.size === 3) {
+              setTimeout(revealFinalSurprise, 500);
+            }
+          });
+        });
+
+        function revealFinalSurprise() {
+          if (!finalCard) return;
+          finalCard.hidden = false;
+          finalCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          spawnGoldCelebration(40);
+        }
+
+        function spawnGoldCelebration(count = 35) {
+          const layer = document.getElementById("celebration-layer") || (() => {
+            const l = document.createElement("div");
+            l.id = "celebration-layer";
+            document.body.appendChild(l);
+            return l;
+          })();
+
+          const symbols = ["✨", "✦", "✧", "🌟", "💛", "♥"];
+          for (let i = 0; i < count; i++) {
+            const el = document.createElement("span");
+            el.textContent = symbols[i % symbols.length];
+            el.style.position = "absolute";
+            el.style.pointerEvents = "none";
+            el.style.color = "#ffd700";
+            if (symbols[i % symbols.length] === "♥") el.style.color = "#d84b7f";
+            
+            const x = 5 + Math.random() * 90;
+            const delay = Math.random() * 0.4;
+            const duration = 1.5 + Math.random() * 1.5;
+            const size = 14 + Math.random() * 18;
+            
+            el.style.left = `${x}vw`;
+            el.style.bottom = "-30px";
+            el.style.fontSize = `${size}px`;
+            el.style.opacity = "0";
+            el.style.transition = `transform ${duration}s linear, opacity ${duration}s ease`;
+            el.style.zIndex = "10000";
+            
+            layer.appendChild(el);
+            
+            const driftX = (Math.random() - 0.5) * 80;
+            setTimeout(() => {
+              el.style.transform = `translate(${driftX}px, -105vh) rotate(${Math.random() * 360}deg)`;
+              el.style.opacity = "0.95";
+            }, 50 + delay * 1000);
+            
+            setTimeout(() => el.remove(), (duration + delay) * 1000 + 200);
+          }
+        }
+
+        // --- Constelación de Nuestro Día ---
+        const titleEl = document.querySelector("h1");
+        if (titleEl) {
+          titleEl.title = "pista: mantén presionado";
+          titleEl.style.cursor = "pointer";
+          titleEl.style.userSelect = "none";
+          titleEl.style.webkitUserSelect = "none";
+          
+          let pressTimer = null;
+          
+          const startPress = (e) => {
+            e.preventDefault();
+            pressTimer = setTimeout(showConstellation, 1800);
+          };
+          
+          const endPress = () => {
+            clearTimeout(pressTimer);
+          };
+          
+          titleEl.addEventListener("mousedown", startPress);
+          titleEl.addEventListener("mouseup", endPress);
+          titleEl.addEventListener("mouseleave", endPress);
+          
+          titleEl.addEventListener("touchstart", startPress, { passive: false });
+          titleEl.addEventListener("touchend", endPress);
+          titleEl.addEventListener("touchmove", endPress);
+        }
+
+        function showConstellation() {
+          const overlay = document.createElement("div");
+          overlay.className = "constellation-overlay";
+          overlay.style.position = "fixed";
+          overlay.style.inset = "0";
+          overlay.style.background = "#07040d";
+          overlay.style.zIndex = "200000";
+          overlay.style.opacity = "0";
+          overlay.style.transition = "opacity 0.6s ease";
+          overlay.style.cursor = "pointer";
+          
+          const container = document.createElement("div");
+          container.style.position = "absolute";
+          container.style.inset = "0";
+          container.style.display = "flex";
+          container.style.flexDirection = "column";
+          container.style.alignItems = "center";
+          container.style.justifyContent = "center";
+          container.style.pointerEvents = "none";
+          container.style.textAlign = "center";
+          container.style.padding = "20px";
+          
+          const text1 = document.createElement("div");
+          text1.textContent = "Constelación del 15 de Marzo de 2026";
+          text1.style.fontFamily = "Georgia, serif";
+          text1.style.fontSize = "22px";
+          text1.style.color = "#ffd700";
+          text1.style.textShadow = "0 0 10px rgba(255, 215, 0, 0.8)";
+          text1.style.marginBottom = "10px";
+          
+          const text2 = document.createElement("div");
+          text2.textContent = "Las estrellas son testigo de nuestro amor <3";
+          text2.style.fontFamily = "sans-serif";
+          text2.style.fontSize = "13px";
+          text2.style.color = "#ebd5ff";
+          text2.style.opacity = "0.8";
+          
+          container.appendChild(text1);
+          container.appendChild(text2);
+          overlay.appendChild(container);
+          
+          const canvas = document.createElement("canvas");
+          canvas.style.position = "absolute";
+          canvas.style.inset = "0";
+          canvas.style.width = "100%";
+          canvas.style.height = "100%";
+          overlay.appendChild(canvas);
+          
+          canvas.style.zIndex = "1";
+          container.style.zIndex = "2";
+          
+          document.body.appendChild(overlay);
+          
+          requestAnimationFrame(() => {
+            overlay.style.opacity = "1";
+          });
+          
+          let active = true;
+          overlay.addEventListener("click", () => {
+            active = false;
+            overlay.style.opacity = "0";
+            setTimeout(() => overlay.remove(), 600);
+          });
+          
+          const ctx = canvas.getContext("2d");
+          let w = canvas.width = window.innerWidth;
+          let h = canvas.height = window.innerHeight;
+          
+          const handleResize = () => {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+          };
+          window.addEventListener("resize", handleResize);
+          
+          const starsList = [];
+          for (let i = 0; i < 80; i++) {
+            starsList.push({
+              x: Math.random() * w,
+              y: Math.random() * h,
+              r: 0.5 + Math.random() * 1.5,
+              alpha: 0.2 + Math.random() * 0.8,
+              speed: 0.005 + Math.random() * 0.015
+            });
+          }
+          
+          const heartStars = [];
+          const steps = 18;
+          const centerX = w / 2;
+          const centerY = h / 2 - 20;
+          const scale = Math.min(w, h) * 0.18;
+          
+          for (let i = 0; i < steps; i++) {
+            const t = (i / steps) * Math.PI * 2;
+            const x = 16 * Math.pow(Math.sin(t), 3);
+            const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+            heartStars.push({
+              x: centerX + x * (scale / 16),
+              y: centerY + y * (scale / 16),
+              r: 2.2,
+              alpha: 0.9,
+              pulse: Math.random() * Math.PI
+            });
+          }
+          
+          let mouseX = null;
+          let mouseY = null;
+          
+          const trackMouse = (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+          };
+          
+          const trackTouch = (e) => {
+            if (e.touches && e.touches[0]) {
+              mouseX = e.touches[0].clientX;
+              mouseY = e.touches[0].clientY;
+            }
+          };
+          
+          overlay.addEventListener("mousemove", trackMouse);
+          overlay.addEventListener("touchmove", trackTouch);
+          overlay.addEventListener("touchstart", trackTouch);
+          
+          function draw() {
+            if (!active) {
+              window.removeEventListener("resize", handleResize);
+              return;
+            }
+            ctx.clearRect(0, 0, w, h);
+            
+            ctx.fillStyle = "#ffffff";
+            starsList.forEach(s => {
+              s.alpha += s.speed;
+              if (s.alpha > 1 || s.alpha < 0.2) s.speed = -s.speed;
+              ctx.globalAlpha = s.alpha;
+              ctx.beginPath();
+              ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+              ctx.fill();
+            });
+            
+            ctx.strokeStyle = "rgba(255, 215, 0, 0.22)";
+            ctx.lineWidth = 1;
+            ctx.globalAlpha = 1;
+            ctx.beginPath();
+            for (let i = 0; i < heartStars.length; i++) {
+              const p1 = heartStars[i];
+              const p2 = heartStars[(i + 1) % heartStars.length];
+              ctx.moveTo(p1.x, p1.y);
+              ctx.lineTo(p2.x, p2.y);
+            }
+            ctx.stroke();
+            
+            if (mouseX !== null && mouseY !== null) {
+              ctx.strokeStyle = "rgba(216, 172, 255, 0.12)";
+              ctx.beginPath();
+              heartStars.forEach(s => {
+                const dist = Math.hypot(s.x - mouseX, s.y - mouseY);
+                if (dist < 120) {
+                  ctx.moveTo(s.x, s.y);
+                  ctx.lineTo(mouseX, mouseY);
+                }
+              });
+              ctx.stroke();
+            }
+            
+            heartStars.forEach(s => {
+              s.pulse += 0.04;
+              const currentAlpha = 0.5 + Math.sin(s.pulse) * 0.45;
+              ctx.globalAlpha = currentAlpha;
+              ctx.fillStyle = "#ffd700";
+              
+              ctx.shadowBlur = 10;
+              ctx.shadowColor = "#ffd700";
+              
+              ctx.beginPath();
+              ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+              ctx.fill();
+              
+              ctx.shadowBlur = 0;
+            });
+            
+            requestAnimationFrame(draw);
+          }
+          
+          draw();
+        }
+      })();
+    </script>
+  </body>
+</html>

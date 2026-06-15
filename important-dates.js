@@ -41,6 +41,8 @@ te quiero mucho ♥`,
     label: "3 meses aniversario",
     recurring: true,
     popup: "♥ Hoy llevamos 3 meses juntos, te amo ♥",
+    link: "./tres-meses.html",
+    linkText: "ver tu sorpresa →",
   },
 ];
 
@@ -64,5 +66,5 @@ window.MAY15_EXTRAS = {
 // Contadores — edita fecha y título aquí
 window.COUNTDOWNS = [
   { date: "2026-06-15", title: "Días que faltan para tu viaje", pastLabel: "ya pasó tu viaje" },
-  { date: "2026-12-24", title: "días para navidad (quizá nos veamos :p)", pastLabel: "ya fue navidad", id: "navidad" },
+  { date: "2026-12-24", title: "días para navidad (nos veremos :p)", pastLabel: "ya fue navidad", id: "navidad" },
 ];
