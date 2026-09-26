@@ -1,5 +1,5 @@
 (() => {
-  const TZ = "America/Chicago";
+  const TZ = "America/New_York";
 
   const getTodayParts = () => {
     const parts = new Intl.DateTimeFormat("en-US", {

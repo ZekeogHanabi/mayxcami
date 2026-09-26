@@ -1,5 +1,5 @@
 (() => {
-  const TZ = "America/Chicago";
+  const TZ = "America/New_York";
   const ANNIVERSARY_MONTH = 5;
   const ANNIVERSARY_DAY = 15;
   const DOS_TARGET = "dos";

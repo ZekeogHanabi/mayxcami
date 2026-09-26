@@ -313,10 +313,10 @@
         const params = new URLSearchParams(window.location.search);
         const nightOverride = params.get("night"); // "1" | "0" | null
 
-        // Modo noche suave (hora Chicago)
+        // Modo noche suave (hora Nueva York)
         try {
           const hourStr = new Intl.DateTimeFormat("en-US", {
-            timeZone: "America/Chicago",
+            timeZone: "America/New_York",
             hour: "2-digit",
             hour12: false,
           }).format(new Date());

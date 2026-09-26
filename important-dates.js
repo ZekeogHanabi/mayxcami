@@ -54,7 +54,7 @@ window.MAY15_EXTRAS = {
   secretHeart: "quiero decirte otra vez que te elijo, hoy y siempre que pueda ♥",
   timezones: [
     { label: "París (Cami)", zone: "Europe/Paris" },
-    { label: "Chicago (May)", zone: "America/Chicago" },
+    { label: "Nueva York (May)", zone: "America/New_York" },
   ],
   coupon: {
     title: "cupón especial",
@@ -66,5 +66,12 @@ window.MAY15_EXTRAS = {
 // Contadores — edita fecha y título aquí
 window.COUNTDOWNS = [
   { date: "2026-06-15", title: "Días que faltan para tu viaje", pastLabel: "ya pasó tu viaje" },
+  {
+    date: "2026-10-22",
+    endDate: "2026-10-30",
+    title: "días para vernos",
+    duringText: "estamos juntos",
+    pastLabel: "nos volveremos a ver pronto",
+  },
   { date: "2026-12-24", title: "días para navidad (nos veremos :p)", pastLabel: "ya fue navidad", id: "navidad" },
 ];

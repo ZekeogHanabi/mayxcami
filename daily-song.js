@@ -1,5 +1,5 @@
 (() => {
-  const TZ = "America/Chicago";
+  const TZ = "America/New_York";
   const START_DATE = new Date(2026, 4, 15);
   const DAILY_SONGS = [
     "Santiago Cruz - Cuando Regreses",

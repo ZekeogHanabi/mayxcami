@@ -1,5 +1,5 @@
 (() => {
-  const TZ = "America/Chicago";
+  const TZ = "America/New_York";
   const list = window.COUNTDOWNS || (window.TRIP_COUNTDOWN ? [window.TRIP_COUNTDOWN] : []);
   const host = document.getElementById("countdowns");
   if (!host || !list.length) return;
@@ -34,6 +34,12 @@
     const target = new Date(targetY, targetM - 1, targetD);
     const daysLeft = Math.round((target - today) / msPerDay);
 
+    let end = null;
+    if (cfg.endDate) {
+      const [endY, endM, endD] = cfg.endDate.split("-").map(Number);
+      end = new Date(endY, endM - 1, endD);
+    }
+
     const block = document.createElement("div");
     block.className = "day-countdown";
 
@@ -53,10 +59,10 @@
     } else if (daysLeft === 1) {
       value.textContent = "1";
       label.textContent = "día";
-    } else if (daysLeft === 0) {
-      value.textContent = "♥ ¡es hoy! ♥";
+    } else if (end ? (today >= target && today <= end) : daysLeft === 0) {
+      value.textContent = cfg.duringText || "♥ ¡es hoy! ♥";
       value.classList.add("day-countdown-value--today");
-      label.textContent = "";
+      label.textContent = cfg.duringLabel || "";
     } else {
       value.textContent = "♥";
       value.classList.add("day-countdown-value--today");

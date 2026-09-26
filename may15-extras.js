@@ -1,5 +1,5 @@
 (() => {
-  const TZ = "America/Chicago";
+  const TZ = "America/New_York";
   const cfg = window.MAY15_EXTRAS;
   if (!cfg) return;
 
